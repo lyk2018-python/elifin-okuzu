@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ title }}</title>
+  </head>
+  <body>
+    <h1>{{ node.name }}</h1>
+    {% for edge in incoming %}
+      {{ edge }} <br/>
+    {% endfor %}
+  </body>
+</html>
