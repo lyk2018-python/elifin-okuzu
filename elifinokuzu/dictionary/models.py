@@ -59,11 +59,11 @@ class Edge(models.Model):
 
 
         if self.is_directed:
-            arrow = '-->'
+            arrow = '---[%s]-->' % self.type_of_edge
         else:
-            arrow = '<->'
+            arrow = '<--[%s]-->' % self.type_of_edge
 
-        return '%s:%s %s %s:%s' % (
+        return '(%s:%s) %s (%s:%s)' % (
             self.source.language,
             self.source.name.lower(),
             arrow,
