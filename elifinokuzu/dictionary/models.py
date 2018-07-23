@@ -55,9 +55,9 @@ class Edge(models.Model):
 
 	def __str__(self):
 		if self.is_directed:
-			arrow = '<->'
-		else:
 			arrow = '-->'
+		else:
+			arrow = '<->'
 
 		return '%s..%s %s %s..%s' % (
 			self.source.language,
