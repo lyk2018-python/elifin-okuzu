@@ -19,5 +19,5 @@ from dictionary import views
 urlpatterns = [
     path('', views.home, name='home'),
     path('admin/', admin.site.urls),
-    path('nodes/<int:id>/', views.node_detail),
+    path('nodes/<int:id>/', views.node_detail, name="node_detail"),
 ]
