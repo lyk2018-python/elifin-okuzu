@@ -1,4 +1,4 @@
-"""elifiokuzu URL Configuration
+"""elifinokuzu URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.0/topics/http/urls/
@@ -16,9 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from dictionary import views
-
 urlpatterns = [
-	path('', views.home, name='home'),
-    path('nodes/<int:id>', views.node_detail),
+    path('', views.home, name='home'),
     path('admin/', admin.site.urls),
+    path('nodes/<int:id>/', views.node_detail),
 ]

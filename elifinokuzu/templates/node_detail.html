@@ -5,7 +5,8 @@
     <title>{{ title }}</title>
   </head>
   <body>
-    {% for edge in node.incoming.all() %}
+    <h1>{{ node.name }}</h1>
+    {% for edge in incoming %}
       {{ edge }} <br/>
     {% endfor %}
   </body>
