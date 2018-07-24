@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %} Default Title{% endblock %}</title>
+  </head>
+  <body>
+    <nav>
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'about' %}">About</a>
+      <a href="{% url 'support' %}">Support</a>
+    </nav>
+    {% block content %}
+    
+    {% endblock %}
+  </body>
+</html>

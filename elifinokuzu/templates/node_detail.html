@@ -1,13 +1,18 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>{{ title }}</title>
-  </head>
-  <body>
-    <h1>{{ node.name }}</h1>
+{% extends "base_template.html" %}
+{% block title %}{{ node.name }}{% endblock %}
+{% block content %}
+  <h1>{{ node.name }}</h1>
+  {% if incoming %}
+    <h1>Incoming</h1>
     {% for edge in incoming %}
-      {{ edge }} <br/>
+      {{ edge }}
     {% endfor %}
-  </body>
-</html>
+  {% endif %}
+  {% if outgoing %}
+    <h1>Outgoing</h1>
+    {% for edge in outhoing %}
+    {{ edge }}
+    {% endfor %}
+  {% endif %}
+
+{% endblock %}
