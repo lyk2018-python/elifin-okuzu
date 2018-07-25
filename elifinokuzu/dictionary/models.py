@@ -56,8 +56,6 @@ class Edge(models.Model):
     )
 
     def __str__(self):
-
-
         if self.is_directed:
             arrow = '---[%s]-->' % self.type_of_edge
         else:
