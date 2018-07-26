@@ -50,6 +50,11 @@ class Edge(models.Model):
         on_delete=models.CASCADE,
     )
     is_directed = models.BooleanField()
+    resource = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,
+    )
     type_of_edge = models.CharField(
         max_length=255,
         choices=EDGE_TYPE_CHOICES
