@@ -19,3 +19,9 @@ def node_detail(request, id):
         'outgoing': outgoing,
         'title': 'Öküzün Elifi: %s' % node.name,
     })
+
+def about(request):
+    return render(request, 'about.html')
+
+def support(request):
+    return render(request, 'support.html')

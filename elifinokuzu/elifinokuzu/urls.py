@@ -18,6 +18,8 @@ from django.urls import path
 from dictionary import views
 urlpatterns = [
     path('', views.home, name='home'),
+    path('about/', views.about, name='about'),
+    path('support/', views.support, name='support'),
     path('admin/', admin.site.urls),
     path('nodes/<int:id>/', views.node_detail, name="node_detail"),
 ]
