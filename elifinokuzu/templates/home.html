@@ -5,4 +5,5 @@
     <a href="{% url 'node_detail' node.id %}">{{ node.name }}</a><br>
     <p>{{ node.language }}</p>
   {% endfor %}
+<a href="{% url 'node_detail' random_word %}">GET A RANDOM WORD</a><br>
 {% endblock %}

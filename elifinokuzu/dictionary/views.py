@@ -1,3 +1,4 @@
+import random
 from django.shortcuts import render, redirect
 from dictionary.models import Node, Edge
 from .forms import SubmissionForm
@@ -6,10 +7,11 @@ from django.urls import reverse
 
 def home(request):
     nodes = Node.objects.all()
-
+    random_word = random.choice(Node.objects.all())
     return render(request, 'home.html', {
         'title': 'Öküzün Elifi',
         'nodes': nodes,
+        'random_word': random_word.id,
     })
 
 def node_detail(request, id):
