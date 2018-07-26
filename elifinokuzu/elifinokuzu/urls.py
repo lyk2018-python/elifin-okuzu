@@ -21,5 +21,5 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('support/', views.support, name='support'),
     path('admin/', admin.site.urls),
-    path('nodes/<int:id>/', views.node_detail, name="node_detail"),
+    path('nodes/<int:id>/', views.node_detail, name='node_detail'),
 ]
