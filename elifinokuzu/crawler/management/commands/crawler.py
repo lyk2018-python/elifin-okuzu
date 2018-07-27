@@ -18,35 +18,31 @@ class Command(BaseCommand):
         if webpage.status_code == 404:
             return None
         soup = BeautifulSoup(content,"lxml")
-        soup3 = soup.find('h2',{"id" : "koken"})
-        a = str(soup3.find_next_sibling('p'))
-        first = a.find("<b>")+3
-        end = a.find("</b>")
-        origin = a[first:end]
-        self.origin_word(a)
-        return origin,self.word
+        origin_language = soup.find('h2',{"id" : "koken"})
+        origin_language = str(origin_language.find_next_sibling('p'))
+        first = origin_language.find("<b>")+3
+        end = origin_language.find("</b>")
+        origin_language = origin_language[first:end]
+        self.origin_word(soup)
+        return origin_language,self.word
 
     def origin_word(self,html):
-
-         end = str(html).find("</i>")+3
-         html = html[end:]
-         first = str(html).find("<i>")+3
-         end = str(html).find("</i>")
-         self.word = str(html)[first:end]
-         print(self.word)
+         origin = html.find('span',{"class" : "ety2"}).get_text()
+         origin2 = html.find('span',{'class' :"ety4"}).get_text()
+         self.word = str(origin)+" "+str(origin2)
 
     def new_node(self,node_name="null",node_lang="null"):
-        n = Node()
-        n.name = node_name
-        n.language = node_lang
+        n = Node.objects.get_or_create(name=node_name,language=node_lang)[0]
         n.save()
 
     def new_edge(self,destination,source):
-        e = Edge()
-        e.source = Node.objects.get(name=source)
-        e.destination = Node.objects.get(name=destination)
-        e.type_of_edge = "derives_from"
-        e.is_directed = True
+        e = Edge.objects.get_or_create\
+                    (
+                    source=Node.objects.get(name=source),
+                    destination=Node.objects.get(name=destination),
+                    type_of_edge= "derives_from",
+                    is_directed = True,
+                    )[0]
         e.save()
 
     def handle(self, *args, **options):
