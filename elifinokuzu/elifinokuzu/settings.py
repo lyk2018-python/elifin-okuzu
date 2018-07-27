@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dictionary',
     'crawler',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +122,4 @@ except SyntaxError:
         Local settings is misconfigured.
         '''
     )
+NOCAPTCHA = True
