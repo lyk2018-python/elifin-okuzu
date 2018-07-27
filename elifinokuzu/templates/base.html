@@ -1,6 +1,7 @@
-
-  {% load static %}
+{% load static %}
   <link rel="stylesheet" href="{% static 'layout/styles/base.css'%}" type="text/css" />
+
+{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -19,16 +20,16 @@
         </a>
       </header>
       <nav>
-        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'home' %}">{% trans 'Home' %}</a>
         {% if user.is_authenticated %}
           Hello {{ user.username }}
-          <a href="{% url 'logout'%}">Logout</a>
+          <a href="{% url 'logout'%}">{% trans 'Logout' %}</a>
         {% else %}
-          <a href="{% url 'signup'%}">Signup</a>
-          <a href="{% url 'login'%}">Login</a>
+          <a href="{% url 'signup'%}">{% trans 'Signup' %}</a>
+          <a href="{% url 'login'%}">{% trans 'Login' %}</a>
         {% endif %}
-        <a href="{% url 'about' %}">About</a>
-        <a href="{% url 'submit' %}">Submit </a>
+        <a href="{% url 'about' %}">{% trans 'About' %}</a>
+        <a href="{% url 'submit' %}">{% trans 'Submit' %}</a>
       </nav>
       <div class="content">
         {% block content %}
@@ -36,9 +37,7 @@
         {% endblock %}
       </div>
       <footer>
-        elifinokuzu is an open-source
-        etymological dictionary.
-        support us on github.
+        {% trans 'elifinokuzu is an open-source etymological dictionary. Support us on github.' %}
       </footer>
     </div>
   </body>
