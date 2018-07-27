@@ -1,0 +1,30 @@
+SECRET_KEY = '<PUT SECRET KEY HERE>'
+ALLOWED_HOSTS = []
+DEBUG = True
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.sqlite3',
+    }
+}
+
+"""
+Database configurations
+
+MySQL -> django.db.backends.mysql
+Oracle -> django.db.backends.oracle
+PostgreSQL -> django.db.backends.postgresql_psycopg2
+SQLite -> django.db.backends.sqlite3
+
+DATABASES = {
+    'default': {
+        'ENGINE': '<Database engines>',
+        'NAME': 'db_name',
+        'USER': 'db_user',
+        'PASSWORD': 'db_user_password',
+        'HOST': '',
+        'PORT': 'db_port_number',
+    }
+}
+"""
