@@ -7,11 +7,16 @@ from django.urls import reverse
 
 def home(request):
     nodes = Node.objects.all()
-    random_word = random.choice(Node.objects.all())
+
+    if len(Node.objects.all()) > 0:
+        random_word = random.choice(Node.objects.all()).id
+    else:
+        random_word = "None"
+
     return render(request, 'home.html', {
         'title': 'Öküzün Elifi',
         'nodes': nodes,
-        'random_word': random_word.id,
+        'random_word': random_word,
     })
 
 def node_detail(request, id):
@@ -53,7 +58,7 @@ def submit(request):
                 type_of_edge=form.cleaned_data['type_of_edge'],
                 resource=form.cleaned_data['resource'],
             )
-            
-            return redirect(reverse("node_detail", args=[source_node.id]))
 
-    return render(request, 'submit.html',{"form" : form})
+            return redirect(reverse("node_detail", args=[source_node.id]))
+    else:
+        return render(request, 'submit.html',{"form" : form})
