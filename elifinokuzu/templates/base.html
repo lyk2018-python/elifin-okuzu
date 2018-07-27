@@ -9,21 +9,34 @@
     <title>{% block title %} Default Title{% endblock %}</title>
   </head>
   <body>
-    <nav>
-      {% if user.is_authenticated %}
+    <div class="container">
+      <header>
+        <a
+          id="logo"
+          href="/"
+        >
+          <img src="{% static 'logo.png' %}" />
+        </a>
+      </header>
+      <nav>
         Hello {{ user.username }}
-        <a href="{% url 'logout' %}">Logout</a>
-      {% else %}
-        <a href="{% url 'signup' %}">Signup</a>
-        <a href="{% url 'login' %}">Login</a>
-      {% endif %} 
-      <a href="{% url 'home' %}">Home</a>
-      <a href="{% url 'about' %}">About</a>
-      <a href="{% url 'support' %}">Support</a>
-      <a href="{% url 'submit' %}">Submit </a>
-    </nav>
-    {% block content %}
-
-    {% endblock %}
+        <a href="{% url 'logout'%}">Logout</a>
+        <a href="{% url 'signup'%}">Signup</a>
+        <a href="{% url 'login'%}">Login</a>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'submit' %}">Submit </a>
+      </nav>
+      <div class="content">
+        {% block content %}
+        lorem ipsum dolor sit amet
+        {% endblock %}
+      </div>
+      <footer>
+        elifinokuzu is an open-source
+        etymological dictionary.
+        support us on github.
+      </footer>
+    </div>
   </body>
 </html>
