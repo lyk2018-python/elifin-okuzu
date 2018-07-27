@@ -19,7 +19,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -30,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'dictionary',
+    'crawler',
 ]
 
 MIDDLEWARE = [
@@ -49,7 +49,6 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
-
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -64,7 +63,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'elifinokuzu.wsgi.application'
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -101,8 +99,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+STATICFILES_DIRS= [
+    STATIC_DIR,
+]
+LOGOUT_REDIRECT_URL = '/'
 
 try:
     from elifinokuzu.local_settings import *

@@ -1,16 +1,19 @@
-{% extends "base_template.html" %}
-  {% block content %}
-    <h1>{{ node.name }}</h1>
-    {% if incoming %}
-      <h3>Incoming</h3>
-      {% for edge in incoming %}
-        {{ edge }} <br/>
-      {% endfor %}
-    {% endif %}
-    {% if outgoing %}
-      <h3>Outgoing</h3>
-      {% for edge in outgoing %}
-        {{ edge }} <br/>
-      {% endfor %}
-    {% endif %}
-  {% endblock %}
+
+{% extends "base.html" %}
+{% block title %}{{ node.name }}{% endblock %}
+{% block content %}
+  <h1>{{ node.name }}</h1>
+  {% if incoming %}
+    <h1>Incoming</h1>
+    {% for edge in incoming %}
+      {{ edge }}
+    {% endfor %}
+  {% endif %}
+  {% if outgoing %}
+    <h1>Outgoing</h1>
+    {% for edge in outhoing %}
+    {{ edge }}
+    {% endfor %}
+  {% endif %}
+
+{% endblock %}
