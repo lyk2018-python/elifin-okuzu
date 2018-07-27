@@ -1,33 +1,34 @@
 from django import forms
 from .models import LANGUAGE_CHOICES, EDGE_TYPE_CHOICES
+from django.utils.translation import ugettext_lazy as _
 
 
 class SubmissionForm(forms.Form):
     source_language = forms.ChoiceField(
         choices=LANGUAGE_CHOICES,
-        label='Source Language',
+        label=_('Source Language'),
     )
     source_node = forms.CharField(
-        help_text="Example: Elif in Turkish language",
+        help_text=_("Example: Elif in Turkish language"),
         max_length=255,
-        label='Source Node',
+        label=_('Source Node'),
     )
     target_language = forms.ChoiceField(
         choices=LANGUAGE_CHOICES,
-        label='Target Language',
+        label=_('Target Language'),
     )
     target_node = forms.CharField(
-        help_text="Example: Alpha in Ancient Greek",
+        help_text=_("Example: Alpha in Ancient Greek"),
         max_length=255,
-        label='Target Node',
+        label=_('Target Node'),
     )
     type_of_edge = forms.ChoiceField(
         widget=forms.RadioSelect(),
         choices=EDGE_TYPE_CHOICES,
-        label='Type of Edge',
+        label=_('Type of Edge'),
     )
     resource = forms.CharField(
-        help_text="Example: Sevan Nişanyan's Elifin Öküzü",
+        help_text=_("Example: Sevan Nişanyan's Elifin Öküzü"),
         max_length=255,
-        label='Resource',
+        label=_('Resource'),
     )
