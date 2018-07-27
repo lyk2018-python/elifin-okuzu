@@ -1,22 +1,24 @@
 from django.db import models
+from django.conf import settings
+from django.utils.translation import ugettext_lazy as _
 
 
 LANGUAGE_CHOICES = (
-    ('tr', 'Turkish'),
-    ('fr', 'French'),
-    ('gr', 'German'),
-    ('pl', 'Polish'),
-    ('kr', 'Kurdish'),
-    ('lt', 'Latin'),
-    ('en', 'English'),
-    ('es', 'Spanish'),
-    ('ar', 'Arabic'),
+    ('tr', _('Turkish')),
+    ('fr', _('French')),
+    ('gr', _('German')),
+    ('pl', _('Polish')),
+    ('kr', _('Kurdish')),
+    ('lt', _('Latin')),
+    ('en', _('English')),
+    ('es', _('Spanish')),
+    ('ar', _('Arabic')),
 )
 
 EDGE_TYPE_CHOICES = (
-    ('derives_from', 'Derives from'),
-    ('symbol_of', 'Symbol of'),
-    ('compound_of', 'Compound of'),
+    ('derives_from', _('Derives from')),
+    ('symbol_of', _('Symbol of')),
+    ('compound_of', _('Compound of')),
 )
 
 
@@ -25,6 +27,11 @@ class Node(models.Model):
     Node (düğüm)
     The most base entity in the dictionary
     """
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        on_delete=models.CASCADE,
+    )
     name = models.CharField(max_length=255)
     language = models.CharField(
         max_length=255,
@@ -39,6 +46,11 @@ class Edge(models.Model):
     """
     Holds the relationships between nodes.
     """
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        on_delete=models.CASCADE,
+    )
     source = models.ForeignKey(
         Node,
         related_name='incoming',

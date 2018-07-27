@@ -1,5 +1,6 @@
-
 {% extends "base.html" %}
+{% load i18n %}
+
 {% block title %}{{ node.name }}{% endblock %}
 {% block content %}
     <form action="/report">
@@ -14,7 +15,7 @@
   {% endif %}
   {% if outgoing %}
     <h1>Outgoing</h1>
-    {% for edge in outhoing %}
+    {% for edge in outgoing %}
     {{ edge }}
     {% endfor %}
   {% endif %}
