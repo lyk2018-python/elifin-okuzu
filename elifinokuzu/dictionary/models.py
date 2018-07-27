@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 
 LANGUAGE_CHOICES = (
@@ -25,6 +26,11 @@ class Node(models.Model):
     Node (düğüm)
     The most base entity in the dictionary
     """
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        on_delete=models.CASCADE,
+    )
     name = models.CharField(max_length=255)
     language = models.CharField(
         max_length=255,
@@ -39,6 +45,11 @@ class Edge(models.Model):
     """
     Holds the relationships between nodes.
     """
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        on_delete=models.CASCADE,
+    )
     source = models.ForeignKey(
         Node,
         related_name='incoming',

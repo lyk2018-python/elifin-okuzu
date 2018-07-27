@@ -46,10 +46,13 @@ def submit(request):
             source_node = Node.objects.create(
                 name=form.cleaned_data['source_node'],
                 language=form.cleaned_data['source_language'],
+                user=request.user,
+
             )
             target_node = Node.objects.create(
                 name=form.cleaned_data['target_node'],
                 language=form.cleaned_data['target_language'],
+                user=request.user,
             )
             edge = Edge.objects.create(
                 source=source_node,
@@ -57,6 +60,7 @@ def submit(request):
                 is_directed=False,
                 type_of_edge=form.cleaned_data['type_of_edge'],
                 resource=form.cleaned_data['resource'],
+                user=request.user,
             )
 
             return redirect(reverse("node_detail", args=[source_node.id]))
