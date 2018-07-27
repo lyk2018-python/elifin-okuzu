@@ -10,7 +10,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('nodes/<int:id>/', dictionary_views.node_detail, name='node_detail'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/signup/', account_views.signup, name='signup' ),
-    path('accounts/profile/', account_views.dashboard, name='dashboard' ),
+    path('accounts/signup/', account_views.signup, name='signup'),
+    path('accounts/profile/', account_views.dashboard, name='dashboard'),
     path('submit/', dictionary_views.submit, name='submit' ),
 ]
