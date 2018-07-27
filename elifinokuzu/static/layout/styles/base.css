@@ -41,6 +41,12 @@ footer {
   padding: 0.6em;
 }
 
+.report_button {
+    margin: 20px;
+    margin-left: 750px;
+
+}
+
 .content h3 {
   margin: 0;
   padding: 0.4em 1em;

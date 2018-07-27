@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dictionary',
     'crawler',
+    'reports',
 ]
 
 MIDDLEWARE = [
