@@ -2,7 +2,16 @@ body {
   font-family: helvetica, sans-serif;
   font-size: 1.4em;
 }
-
+.info{
+  display: block;
+  padding: 10px;
+  letter-spacing: 1px;
+}
+.warning{
+  background-color: #fcf8e3;
+  border:1px solid #faebcc;
+  color: #333;
+}
 .container {
   width: 37em;
   margin: auto;
