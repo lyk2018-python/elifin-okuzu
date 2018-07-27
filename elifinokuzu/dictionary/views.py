@@ -60,5 +60,4 @@ def submit(request):
             )
 
             return redirect(reverse("node_detail", args=[source_node.id]))
-    else:
-        return render(request, 'submit.html',{"form" : form})
+    return render(request, 'submit.html',{"form" : form})
