@@ -1,6 +1,6 @@
 from django import forms
 from .models import LANGUAGE_CHOICES, EDGE_TYPE_CHOICES
-
+from captcha.fields import ReCaptchaField
 
 class SubmissionForm(forms.Form):
     source_language = forms.ChoiceField(
@@ -31,3 +31,4 @@ class SubmissionForm(forms.Form):
         max_length=255,
         label='Resource',
     )
+    captcha = ReCaptchaField()
