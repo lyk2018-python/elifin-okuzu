@@ -5,7 +5,10 @@ from django.core.management import BaseCommand
 
 class Command(BaseCommand):
 
-    def __init__(self):
+    help = 'Crawling data from etimolojiksozluk'
+
+    def __init__(self, *args ,**kwargs):
+        super().__init__(*args, **kwargs)
         self.main_url = "https://www.etimolojiturkce.com/kelime/{}"
         self.word = ""
 
