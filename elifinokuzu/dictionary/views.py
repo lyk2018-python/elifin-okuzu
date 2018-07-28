@@ -50,8 +50,6 @@ def submit(request):
     form = SubmissionForm()
 
     if request.method == "POST":
-        # import pdb
-        # pdb.set_trace()
         form = SubmissionForm(request.POST)
         if form.is_valid():
 

@@ -5,8 +5,7 @@
 {% block content %}
   {% for node in nodes %}
 	<div>
-	    <h1><a href="{% url 'node_detail' node.id %}">{{ node.name }}</a></h1>
-	    <p>{{ node.language }}</p>
+	    <h1><a href="{% url 'node_detail' node.id %}">{{ node.name }}-{{ node.language }}</a></h1>
 	   	<a href="{% url 'node_detail' node.id %}">Comments: {{ node.comments.count }}</a><br><hr>
 	</div>
   {% endfor %}
