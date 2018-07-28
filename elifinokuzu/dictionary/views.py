@@ -23,6 +23,16 @@ def node_detail(request, id):
         'title': 'Öküzün Elifi: %s' % node.name,
     })
 
+def edge_detail(request, id):
+    edge = Edge.objects.get(id=id)
+    return render(request, 'edge_detail.html', {
+        'edge': edge,
+        'edge.source': edge.source,
+        'edge.destination': edge.destination,
+        'edge.type_of_edge': edge.type_of_edge,
+        'title': 'Öküzün Elifi: %s' % edge.type_of_edge,
+    })
+
 def about(request):
     return render(request, 'about.html')
 

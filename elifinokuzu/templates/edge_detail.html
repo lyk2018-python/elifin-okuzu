@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ edge.type_of_edge }}{% endblock %}
+{% block content %}
+<form action="/report">
+      <input type="submit" class="report_button" value="Report" />
+  </form>
+	<h1>{{ edge.type_of_edge }}</h1>
+	<p>{{ edge.source }}</p>	
+	<p>{{ edge.type_of_edge }}</p>
+	<p>{{ edge.destination }}</p>
+<hr><a href="{% url 'add_comment_to_node' edge.id %}"><h1>Add comment</h1></a>
+{% for comment in node.comments.all %}
+    <div>
+        <h4><strong>{{ comment.user }}:</strong></h4>
+        <p>{{ comment.text }}</p>
+        <h5>{{ comment.created_date|date:"d M, Y" }}</h5>
+    </div>
+<hr>
+{% empty %}
+    <p>No comments here yet :(</p>
+{% endfor %}
+{% endblock %}
