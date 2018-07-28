@@ -1,10 +1,10 @@
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-from .forms import UserExtendedCreationForm
+from .forms import CustomUserCreationForm
+
 def signup(request):
     if request.method == 'POST':
-        form = UserExtendedCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
@@ -14,8 +14,11 @@ def signup(request):
             login(request, user)
             return redirect('home')
     else:
-        form = UserExtendedCreationForm()
+        form = CustomUserCreationForm()
         return render(request, 'registration/signup.html', {'form': form})
-
+      
 def dashboard(request):
     return render(request, 'accounts/dashboard.html')
+
+def support(request):
+    return render(request, 'support.html')
