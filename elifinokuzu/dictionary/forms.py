@@ -1,35 +1,34 @@
 from django import forms
 from .models import LANGUAGE_CHOICES, EDGE_TYPE_CHOICES
-from django.utils.translation import ugettext_lazy as _
-#from captcha.fields import ReCaptchaField
+from captcha.fields import ReCaptchaField
 
 class SubmissionForm(forms.Form):
     source_language = forms.ChoiceField(
         choices=LANGUAGE_CHOICES,
-        label=_('Source Language'),
+        label='Source Language',
     )
     source_node = forms.CharField(
-        help_text=_("Example: Elif in Turkish language"),
+        help_text="Example: Elif in Turkish language",
         max_length=255,
-        label=_('Source Node'),
+        label='Source Node',
     )
     target_language = forms.ChoiceField(
         choices=LANGUAGE_CHOICES,
-        label=_('Target Language'),
+        label='Target Language',
     )
     target_node = forms.CharField(
-        help_text=_("Example: Alpha in Ancient Greek"),
+        help_text="Example: Alpha in Ancient Greek",
         max_length=255,
-        label=_('Target Node'),
+        label='Target Node',
     )
     type_of_edge = forms.ChoiceField(
         widget=forms.RadioSelect(),
         choices=EDGE_TYPE_CHOICES,
-        label=_('Type of Edge'),
+        label='Type of Edge',
     )
     resource = forms.CharField(
-        help_text=_("Example: Sevan Nişanyan's Elifin Öküzü"),
+        help_text="Example: Sevan Nişanyan's Elifin Öküzü",
         max_length=255,
-        label=_('Resource'),
+        label='Resource',
     )
-    #captcha = ReCaptchaField()
+    captcha = ReCaptchaField()

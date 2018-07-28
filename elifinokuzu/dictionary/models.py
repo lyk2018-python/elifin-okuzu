@@ -1,24 +1,23 @@
 from django.db import models
 from django.conf import settings
-from django.utils.translation import ugettext_lazy as _
 
 
 LANGUAGE_CHOICES = (
-    ('tr', _('Turkish')),
-    ('fr', _('French')),
-    ('gr', _('German')),
-    ('pl', _('Polish')),
-    ('kr', _('Kurdish')),
-    ('lt', _('Latin')),
-    ('en', _('English')),
-    ('es', _('Spanish')),
-    ('ar', _('Arabic')),
+    ('tr', 'Turkish'),
+    ('fr', 'French'),
+    ('gr', 'German'),
+    ('pl', 'Polish'),
+    ('kr', 'Kurdish'),
+    ('lt', 'Latin'),
+    ('en', 'English'),
+    ('es', 'Spanish'),
+    ('ar', 'Arabic'),
 )
 
 EDGE_TYPE_CHOICES = (
-    ('derives_from', _('Derives from')),
-    ('symbol_of', _('Symbol of')),
-    ('compound_of', _('Compound of')),
+    ('derives_from', 'Derives from'),
+    ('symbol_of', 'Symbol of'),
+    ('compound_of', 'Compound of'),
 )
 
 
