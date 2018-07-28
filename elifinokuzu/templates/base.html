@@ -1,7 +1,8 @@
-
-  {% load static %}
+{% load static %}
   <link rel="stylesheet" href="{% static 'layout/styles/base.css'%}" type="text/css" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+  <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %} "/>
+  {% load i18n %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -40,7 +41,8 @@ openDropdown.classList.remove('button_show');
         </a>
       </header>
       <nav>
-        <div class="menu">
+        <a href="{% url 'home' %}">{% trans 'Home' %}</a>
+               <div class="menu">
           <a href="{% url 'home' %}">Home</a>
 
          <a id="aboutbutton" onclick="myFunction()" class="dropbtn ">About</a>
@@ -52,21 +54,21 @@ openDropdown.classList.remove('button_show');
          <a href="{% url 'about'%}#akgul">Mustafa Akgül</a>
          </div>
 
-
-          <a href="{% url 'submit' %}">Submit </a>
-          {% if user.is_authenticated %}
-            Hello {{ user.username }}
-            <a href="{% url 'logout'%}">Logout</a>
-          {% else %}
-            <a href="{% url 'signup'%}">Signup</a>
-            <a href="{% url 'login'%}">Login</a>
-          {% endif %}
-          <div class="mobile-menu">
-          <a href="#" class="bar-menu">
-            <i class="fas fa-bars"></i>
-          </a>
-          </div>
+        {% if user.is_authenticated %}
+          Hello {{ user.username }}
+          <a href="{% url 'logout'%}">{% trans 'Logout' %}</a>
+        {% else %}
+          <a href="{% url 'signup'%}">{% trans 'Signup' %}</a>
+          <a href="{% url 'login'%}">{% trans 'Login' %}</a>
+        {% endif %}
+        <a href="{% url 'support' %}">{% trans 'About' %}</a>
+        <a href="{% url 'submit' %}">{% trans 'Submit' %}</a>
+        <div class="mobile-menu">
+        <a href="#" class="bar-menu">
+          <i class="fas fa-bars"></i>
+        </a>
         </div>
+      </div>
       </nav>
 
         <div class="mbl-menu">
@@ -85,13 +87,10 @@ openDropdown.classList.remove('button_show');
 
       <div class="content">
         {% block content %}
-        lorem ipsum dolor sit amet
         {% endblock %}
       </div>
       <footer>
-        elifinokuzu is an open-source
-        etymological dictionary.
-        support us on github.
+        {% trans 'elifinokuzu is  an open-source etymological dictionary. <a href="/support">Support</a> us on github.' %}
       </footer>
     </div>
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>

@@ -32,7 +32,7 @@ class Node(models.Model):
         null=True,
         on_delete=models.CASCADE,
     )
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     language = models.CharField(
         max_length=255,
         choices=LANGUAGE_CHOICES
