@@ -16,7 +16,9 @@ urlpatterns = [
     path('accounts/profile/', account_views.dashboard, name='dashboard'),
     path('support/', account_views.support, name='support'),
     path('submit/', dictionary_views.submit, name='submit' ),
+    path('edges/<int:id>/', dictionary_views.edge_detail, name='edge_detail'),
     path('report/', report_views.report, name='report'),
     path('reportdone', report_views.reportdone, name ='reportdone'),
     path('nodes/<int:id>/comment/', comment_views.add_comment_to_node, name='add_comment_to_node'),
+    path('edges/<int:id>/comment/', comment_views.add_comment_to_edge, name='add_comment_to_edge'),
 ]
