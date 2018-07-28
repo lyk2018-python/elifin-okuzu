@@ -19,5 +19,16 @@
     {{ edge }}
     {% endfor %}
   {% endif %}
+<hr><a href="{% url 'add_comment_to_node' node.id %}"><h1>Add comment</h1></a>
+{% for comment in node.comments.all %}
+    <div>
+        <h4><strong>{{ comment.user }}:</strong></h4>
+        <p>{{ comment.text }}</p>
+        <h5>{{ comment.created_date|date:"d M, Y" }}</h5>
+    </div>
+<hr>
+{% empty %}
+    <p>No comments here yet :(</p>
+{% endfor %}
 
 {% endblock %}

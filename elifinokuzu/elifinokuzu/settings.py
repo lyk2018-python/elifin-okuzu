@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'dictionary',
     'crawler',
     'captcha',
+    'comments',
 ]
 
 MIDDLEWARE = [
