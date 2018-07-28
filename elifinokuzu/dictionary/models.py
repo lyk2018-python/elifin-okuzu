@@ -30,6 +30,7 @@ class Node(models.Model):
         max_length=255,
         choices=LANGUAGE_CHOICES
     )
+    
 
     def __str__(self):
         return self.name

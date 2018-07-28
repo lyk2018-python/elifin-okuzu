@@ -18,3 +18,5 @@ def signup(request):
 
 def dashboard(request):
     return render(request, 'accounts/dashboard.html')
+
+

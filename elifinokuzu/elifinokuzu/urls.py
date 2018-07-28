@@ -3,6 +3,7 @@ from django.urls import path, include
 from dictionary import views as dictionary_views
 from accounts import views as account_views
 
+
 urlpatterns = [
     path('', dictionary_views.home, name='home'),
     path('about/', dictionary_views.about, name='about'),
@@ -13,4 +14,7 @@ urlpatterns = [
     path('accounts/signup/', account_views.signup, name='signup'),
     path('accounts/profile/', account_views.dashboard, name='dashboard'),
     path('submit/', dictionary_views.submit, name='submit' ),
+    path('search/', dictionary_views.search, name='search'),
+
+    
 ]

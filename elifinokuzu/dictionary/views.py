@@ -1,8 +1,11 @@
 import random
 from django.shortcuts import render, redirect
 from dictionary.models import Node, Edge
-from .forms import SubmissionForm
+from .forms import SubmissionForm,Search
 from django.urls import reverse
+from django.template import RequestContext
+from django.http import HttpResponse
+
 
 
 def home(request):
@@ -62,3 +65,28 @@ def submit(request):
             return redirect(reverse("node_detail", args=[source_node.id]))
     else:
         return render(request, 'submit.html',{"form" : form})
+
+def search(request):
+
+
+    form = Search()
+    if request.method == "POST":
+        form = Search(request.POST)
+        if form.is_valid():
+            searched_word = form.cleaned_data['search']
+            nodes = Node.objects.filter(name__contains=searched_word)
+            edges = Edge.objects.all()
+            return render(request, 'search.html', {
+                'form':form,
+                "searched_word": nodes,
+                'edges': edges,
+            })
+
+
+                
+    return render(request, 'search.html',{"form" : form})
+
+
+
+
+
