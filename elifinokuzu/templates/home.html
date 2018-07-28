@@ -1,14 +1,18 @@
 {% extends "base.html" %}
-{% block title %} Home Page {% endblock %}
+{% load i18n %}
+
+{% block title %}{% trans 'Home Page' %}{% endblock %}
 {% block content %}
   {% for node in nodes %}
-    <a href="{% url 'node_detail' node.id %}">{{ node.name }}</a><br>
-    <p>{{ node.language }}</p>
+	<div>
+	    <h1><a href="{% url 'node_detail' node.id %}">{{ node.name }}</a></h1>
+	    <p>{{ node.language }}</p>
+	   	<a href="{% url 'node_detail' node.id %}">Comments: {{ node.comments.count }}</a><br><hr>
+	</div>
   {% endfor %}
 {% if random_word != "None" %}
-  <a href="{% url 'node_detail' random_word %}">GET A RANDOM WORD</a><br>
+  <a href="{% url 'node_detail' random_word %}">{% trans 'GET A RANDOM WORD' %}</a><br>
 {% else %}
-  <h2>Database BOS</h2>
+  <h2>{% trans 'Database is EMPTY' %}</h2>
 {% endif %}
-
 {% endblock %}
