@@ -9,6 +9,7 @@
 {% endif %}
 
 {% if form %}
+ {% if user.is_authenticated %}
   <h2>{% trans 'Submit' %}</h2>
   {% if user.is_anonymous %}
     <div class="info warning">
@@ -21,5 +22,8 @@
     <button type="submit" onclick="this.form.submit(); this.disabled=true; this.value='Sending…'">{% trans 'Submit' %}</button>
   </form>
   {% endif %}
+ {% endif %}
+ <h1>You need to log in to submit a word</h1>
+ {% else %}
 {% endif %}
 {% endblock %}

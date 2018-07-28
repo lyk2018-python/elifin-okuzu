@@ -57,6 +57,7 @@ def submit(request):
 
             if [i for i in Node.objects.all() if i.name == form.cleaned_data['source_node']] == [] \
                 or [i for i in Node.objects.all() if i.name == form.cleaned_data['target_node']] == []:
+                
                 try:
                     source_node = Node.objects.get(name=form.cleaned_data['source_node'])
                 except Node.DoesNotExist:
@@ -68,6 +69,7 @@ def submit(request):
                     target_node = Node.objects.create(name=form.cleaned_data['target_node'],language=form.cleaned_data['target_language'],user=request.user,)
 
                 edge = Edge.objects.create(source=source_node,destination=target_node,is_directed=False,type_of_edge=form.cleaned_data['type_of_edge'],resource=form.cleaned_data['resource'],user=request.user,)
+            
             else:
                 return render(request, 'submit.html',
                     {"error" : "there are already those nodes available, please try new one", 
