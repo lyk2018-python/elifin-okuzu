@@ -30,6 +30,7 @@ openDropdown.classList.remove('button_show');
 </script>
   </head>
   <body>
+<<<<<<< HEAD
     <div class="container">
       <header>
         <a
@@ -62,6 +63,7 @@ openDropdown.classList.remove('button_show');
         {% endif %}
         <a href="{% url 'support' %}">{% trans 'About' %}</a>
         <a href="{% url 'submit' %}">{% trans 'Submit' %}</a>
+        <a href="{% url 'search' %}">Search </a>
       </nav>
       <div class="content">
         {% block content %}
@@ -71,5 +73,24 @@ openDropdown.classList.remove('button_show');
         {% trans 'elifinokuzu is  an open-source etymological dictionary. <a href="/support">Support</a> us on github.' %}
       </footer>
     </div>
+=======
+    <nav>
+      {% if user.is_authenticated %}
+        Hello {{ user.username }}
+        <a href="{% url 'logout' %}">Logout</a>
+      {% else %}
+        <a href="{% url 'signup' %}">Signup</a>
+        <a href="{% url 'login' %}">Login</a>
+      {% endif %} 
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'about' %}">About</a>
+      <a href="{% url 'support' %}">Support</a>
+      <a href="{% url 'submit' %}">Submit </a>
+      <a href="{% url 'search' %}">Search </a>
+    </nav>
+    {% block content %}
+    
+    {% endblock %}
+>>>>>>> 1115d5ca7b1d2089557455b4835ca013d9ed1152
   </body>
 </html>
