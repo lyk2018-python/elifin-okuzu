@@ -19,8 +19,10 @@
     {{ edge }}
     {% endfor %}
   {% endif %}
+  {% if user.is_authenticated %}
 <hr><a href="{% url 'add_comment_to_node' node.id %}"><h1>Add comment</h1></a>
-{% for comment in node.comments.all %}
+  {% endif %}
+{% for comment in node.comments_node.all %}
     <div>
         <h4><strong>{{ comment.user }}:</strong></h4>
         <p>{{ comment.text }}</p>
