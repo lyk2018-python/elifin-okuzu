@@ -3,9 +3,32 @@ from django.shortcuts import render, redirect
 from dictionary.models import Node, Edge
 from .forms import SubmissionForm
 from django.urls import reverse
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.models import User
 
 def home(request):
+
+
+    user_list = Node.objects.all()
+    user_list = user_list[::-1]
+    page = request.GET.get('page', 1)
+    paginator = Paginator(user_list, 5)
+
+    try:
+        users = paginator.page(page)
+    except PageNotAnInteger:
+        users = paginator.page(1)
+    except EmptyPage:
+        users = paginator.page(paginator.num_pages)
+
+
+
+
+
+
+
+
+
     nodes = Node.objects.all()
 
     if len(Node.objects.all()) > 0:
@@ -17,6 +40,7 @@ def home(request):
         'title': 'Öküzün Elifi',
         'nodes': nodes,
         'random_word': random_word,
+        'users': users,
     })
 
 def node_detail(request, id):

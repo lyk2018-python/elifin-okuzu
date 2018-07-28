@@ -1,7 +1,7 @@
 
   {% load static %}
   <link rel="stylesheet" href="{% static 'layout/styles/base.css'%}" type="text/css" />
-
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -61,9 +61,28 @@ openDropdown.classList.remove('button_show');
             <a href="{% url 'signup'%}">Signup</a>
             <a href="{% url 'login'%}">Login</a>
           {% endif %}
+          <div class="mobile-menu">
+          <a href="#" class="bar-menu">
+            <i class="fas fa-bars"></i>
+          </a>
+          </div>
         </div>
-
       </nav>
+
+        <div class="mbl-menu">
+          <ul>
+            <li><a href=''>Home</a></li>
+            <li><a href=''>Submit</a></li>
+            {% if user.is_authenticated %}
+            Hello {{ user.username }}
+            <li><a href=''>Logout</a></li>
+            {% else %}
+            <li><a href=''>Signup</a></li>
+            <li><a href=''>Login</a></li>
+            {% endif %}
+          </ul>
+        </div
+
       <div class="content">
         {% block content %}
         lorem ipsum dolor sit amet
@@ -75,5 +94,7 @@ openDropdown.classList.remove('button_show');
         support us on github.
       </footer>
     </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+    <script src="{% static 'layout/styles/custom.js'%}"></script>
   </body>
 </html>
