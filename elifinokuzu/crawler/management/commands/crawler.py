@@ -11,7 +11,6 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument('word', type=str)
-        parser.add_argument('')
 
     def origin_crawler(self,word):
         webpage = requests.get(self.main_url.format(word).lower())
