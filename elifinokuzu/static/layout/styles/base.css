@@ -155,7 +155,17 @@ form ul li {
 form ul {
   padding: 0 10px;
 }
-
+.nodeclass{
+background-color: #5C7480;
+display: block;
+border: #66BDE6;
+color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+font-size: 41px;
+letter-spacing: 25px;
+}
 .helptext {
   color: darkgray;
   display: block;
