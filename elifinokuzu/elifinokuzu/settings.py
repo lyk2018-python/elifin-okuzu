@@ -31,9 +31,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dictionary',
     'crawler',
+    'reports',
     'captcha',
-    'comments',
-]
+    'comments',]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

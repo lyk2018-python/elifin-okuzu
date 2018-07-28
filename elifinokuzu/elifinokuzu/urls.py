@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
+from reports import views as report_views
 from dictionary import views as dictionary_views
 from accounts import views as account_views
 from comments import views as comment_views
@@ -14,5 +15,7 @@ urlpatterns = [
     path('accounts/signup/', account_views.signup, name='signup'),
     path('accounts/profile/', account_views.dashboard, name='dashboard'),
     path('submit/', dictionary_views.submit, name='submit' ),
+    path('report/', report_views.report, name='report'),
+    path('reportdone', report_views.reportdone, name ='reportdone'),
     path('nodes/<int:id>/comment/', comment_views.add_comment_to_node, name='add_comment_to_node'),
 ]

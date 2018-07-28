@@ -3,6 +3,9 @@
 
 {% block title %}{{ node.name }}{% endblock %}
 {% block content %}
+    <form action="/report">
+      <input type="submit" class="report_button" value="Report" />
+  </form>
   <h1>{{ node.name }}</h1>
   {% if incoming %}
     <h1>Incoming</h1>
