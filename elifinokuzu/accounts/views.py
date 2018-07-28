@@ -18,3 +18,6 @@ def signup(request):
 
 def dashboard(request):
     return render(request, 'accounts/dashboard.html')
+
+def support(request):
+    return render(request, 'support.html')

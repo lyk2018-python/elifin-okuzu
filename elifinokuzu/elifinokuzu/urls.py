@@ -14,6 +14,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/', account_views.signup, name='signup'),
     path('accounts/profile/', account_views.dashboard, name='dashboard'),
+    path('support/', account_views.support, name='support'),
     path('submit/', dictionary_views.submit, name='submit' ),
     path('report/', report_views.report, name='report'),
     path('reportdone', report_views.reportdone, name ='reportdone'),
