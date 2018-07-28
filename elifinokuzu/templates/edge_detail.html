@@ -10,8 +10,8 @@
 	<p>{{ edge.source }}</p>	
 	<p>{{ edge.type_of_edge }}</p>
 	<p>{{ edge.destination }}</p>
-<hr><a href="{% url 'add_comment_to_node' edge.id %}"><h1>Add comment</h1></a>
-{% for comment in node.comments.all %}
+<hr><a href="{% url 'add_comment_to_edge' edge.id %}"><h1>Add comment</h1></a>
+{% for comment in edge.comments_edge.all %}
     <div>
         <h4><strong>{{ comment.user }}:</strong></h4>
         <p>{{ comment.text }}</p>
