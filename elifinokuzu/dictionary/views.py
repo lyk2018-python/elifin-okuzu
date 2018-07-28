@@ -1,3 +1,4 @@
+import random
 from django.shortcuts import render, redirect
 from dictionary.models import Node, Edge
 from .forms import SubmissionForm
@@ -7,9 +8,15 @@ from django.urls import reverse
 def home(request):
     nodes = Node.objects.all()
 
+    if len(Node.objects.all()) > 0:
+        random_word = random.choice(Node.objects.all()).id
+    else:
+        random_word = "None"
+
     return render(request, 'home.html', {
         'title': 'Öküzün Elifi',
         'nodes': nodes,
+        'random_word': random_word,
     })
 
 def node_detail(request, id):
@@ -49,10 +56,13 @@ def submit(request):
             source_node = Node.objects.create(
                 name=form.cleaned_data['source_node'],
                 language=form.cleaned_data['source_language'],
+                user=request.user,
+
             )
             target_node = Node.objects.create(
                 name=form.cleaned_data['target_node'],
                 language=form.cleaned_data['target_language'],
+                user=request.user,
             )
             edge = Edge.objects.create(
                 source=source_node,
@@ -60,8 +70,8 @@ def submit(request):
                 is_directed=False,
                 type_of_edge=form.cleaned_data['type_of_edge'],
                 resource=form.cleaned_data['resource'],
+                user=request.user,
             )
-            
-            return redirect(reverse("node_detail", args=[source_node.id]))
 
+            return redirect(reverse("node_detail", args=[source_node.id]))
     return render(request, 'submit.html',{"form" : form})
