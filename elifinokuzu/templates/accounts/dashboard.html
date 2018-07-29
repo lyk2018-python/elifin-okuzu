@@ -1,17 +1,28 @@
 {% extends 'base.html' %}
 {% load i18n %}
-
 {% block content %}
-  <h2>{% trans 'Welcome' %} {{ user.username }}</h2>
-  {% trans 'Name & Surname:' %} {{ user.first_name }} {{ user.last_name }}
-  <br>
-  {% trans 'User ID:' %} {{ user.id }}
-  <br>
-  {% trans 'Username:' %} {{ user.username }}
-  <br>
-  {% trans 'eMail Address:' %} {{ user.email }}
-  <br>
-  {% trans 'Last Login:' %} {{ user.last_login }}
-  <br>
-  {% trans 'Date Joined:' %} {{ user.date_joined }}
+    <h2>{% trans 'Welcome' %} {{ user.username }}</h2>
+    {% if user.is_authenticated %}
+        <div id="profile_main">
+            <div id="avatar">
+                {% load avatar_tags %}
+                {% avatar user 100 %}
+            </div>
+
+            <div id="profile_info">
+                {% trans 'User ID:' %} {{ user.id }}
+                <br>
+                {% trans 'Username:' %} {{ user.username }}
+                <br>
+                {% trans 'Email Address:' %} {{ user.email }}
+                <br>
+                {% trans 'Last Login:' %} {{ user.last_login }}
+                <br>
+                {% trans 'Date Joined:' %} {{ user.date_joined }}
+                <br>
+             </div>
+          <br>
+        </div>
+        <br>
+    {% endif %}
 {% endblock %}

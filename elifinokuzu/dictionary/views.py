@@ -9,7 +9,6 @@ from django.template import RequestContext
 from django.http import HttpResponse
 
 def home(request):
-
     user_list = Node.objects.all()
     user_list = user_list[::-1]
     page = request.GET.get('page', 1)
@@ -36,6 +35,7 @@ def home(request):
         'users': users,
     })
 
+
 def node_detail(request, id):
     node = Node.objects.get(id=id)
     incoming = node.incoming.all()
@@ -47,6 +47,7 @@ def node_detail(request, id):
         'title': 'Öküzün Elifi: %s' % node.name,
     })
 
+
 def edge_detail(request, id):
     edge = Edge.objects.get(id=id)
     return render(request, 'edge_detail.html', {
@@ -57,11 +58,14 @@ def edge_detail(request, id):
         'title': 'Öküzün Elifi: %s' % edge.type_of_edge,
     })
 
+
 def about(request):
     return render(request, 'about.html')
 
+
 def support(request):
     return render(request, 'support.html')
+
 
 def submit(request):
     form = SubmissionForm()
@@ -110,11 +114,8 @@ def search(request):
 
     return render(request, 'search.html',{"form" : form})
 
-def language(request, language="tr"):
+def language(request, language):
     nodes = Node.objects.filter(language=language)
-    # language = "Hello Stranger"
-    # import pdb
-    # pdb.set_trace()
     return render(request, 'language.html',{
         "language": language,
         "nodes": nodes,

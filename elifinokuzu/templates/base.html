@@ -52,6 +52,36 @@
       <a href="#" class="bar-menu">
         <i class="fas fa-bars"></i>
       </a>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %} Default Title{% endblock %}</title>
+    <script>
+    function myFunction() {
+      document.getElementById("cangoDropdown").classList.toggle("button_show");
+    }
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+var dropdowns = document.getElementsByClassName("dropdown-content");
+var i;
+for (i = 0; i < dropdowns.length; i++) {
+var openDropdown = dropdowns[i];
+if (openDropdown.classList.contains('button_show')) {
+openDropdown.classList.remove('button_show');
+}}}}
+</script>
+  </head>
+  <body>
+    <div class="sidenav">
+        <a href="{% url 'language' language='tr' %}">TR</a>
+        <a href="{% url 'language' language='fr' %}">FR</a>
+        <a href="{% url 'language' language='gr' %}">GR</a>
+        <a href="{% url 'language' language='pl' %}">PL</a>
+        <a href="{% url 'language' language='kr' %}">KUR</a>
+        <a href="{% url 'language' language='lt' %}">LT</a>
+        <a href="{% url 'language' language='en' %}">EN</a>
+        <a href="{% url 'language' language='es' %}">SP</a>
+        <a href="{% url 'language' language='ar' %}">AR</a>
       </div>
     </div>
       <a href="{% url 'search' %}">Search </a>
@@ -81,4 +111,8 @@
     </footer>
   </div>
 </body>
+</html>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+    <script src="{% static 'layout/styles/custom.js'%}"></script>
+  </body>
 </html>

@@ -33,7 +33,9 @@ INSTALLED_APPS = [
     'crawler',
     'reports',
     'captcha',
-    'comments',]
+    'comments',
+    'avatar',
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

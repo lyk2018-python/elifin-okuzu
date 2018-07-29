@@ -49,7 +49,11 @@
   <a href="{% url 'node_detail' random_word %}">{% trans 'GET A RANDOM WORD' %}</a><br>
 {% else %}
   <h2>{% trans 'Database is EMPTY' %}</h2>
-  <h2>Database BOS</h2>
+  <a href="{% url 'login' %}">Login</a>
+  <a>or</a>
+  <a href="{% url 'signup' %}">Signup </a>
+  <a>to submit word</a>
+
 {% endif %}
 {% endblock %}
 
