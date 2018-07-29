@@ -17,9 +17,12 @@
     <button type="submit" onclick="this.form.submit(); this.disabled=true; this.value='Sending…'">{% trans 'Submit' %}</button>
   </form>
   {% else %}
-   <h1>You need to log in to submit a word</h1>
+   <h2>You need to log in to submit a word</h2>
    <div class="info warning">
-     {% trans 'Please login for creating a new record.' %}
+     <a href="{% url 'login' %}">Login</a>
+     <a>or</a>
+     <a href="{% url 'signup' %}">Signup </a>
+     <a>to add submit word</a>
    </div>
   {% endif %}
 {% endif %}
