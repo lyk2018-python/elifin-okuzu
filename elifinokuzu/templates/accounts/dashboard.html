@@ -3,13 +3,11 @@
 {% block content %}
     <h2>{% trans 'Welcome' %} {{ user.username }}</h2>
     {% if user.is_authenticated %}
-        <div id="profile_main">
-            <div id="avatar">
+            <div id="profile_info_and_avatar">
+                <div id="avatar" style="float:right">
                 {% load avatar_tags %}
                 {% avatar user 100 %}
-            </div>
-
-            <div id="profile_info">
+                </div>
                 {% trans 'User ID:' %} {{ user.id }}
                 <br>
                 {% trans 'Username:' %} {{ user.username }}
@@ -20,9 +18,6 @@
                 <br>
                 {% trans 'Date Joined:' %} {{ user.date_joined }}
                 <br>
-             </div>
-          <br>
-        </div>
-        <br>
+             </div>     
     {% endif %}
 {% endblock %}
