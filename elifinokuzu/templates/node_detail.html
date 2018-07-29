@@ -10,17 +10,17 @@
   {% if incoming %}
     <h1>Incoming</h1>
     {% for edge in incoming %}
-      {{ edge }}
+      <hr><a href="{% url 'edge_detail' edge.id %}"><h5>{{ edge }}</h5></a>
     {% endfor %}
   {% endif %}
   {% if outgoing %}
     <h1>Outgoing</h1>
     {% for edge in outgoing %}
-    {{ edge }}
+      <hr><a href="{% url 'edge_detail' edge.id %}"><h5>{{ edge }}</h5></a>
     {% endfor %}
   {% endif %}
   {% if user.is_authenticated %}
-<hr><a href="{% url 'add_comment_to_node' node.id %}"><h1>Add comment</h1></a>
+    <hr><a class="comment-btn" href="{% url 'add_comment_to_node' node.id %}"><h3>Add comment</h3></a>
   {% endif %}
 {% for comment in node.comments_node.all %}
     <div>
