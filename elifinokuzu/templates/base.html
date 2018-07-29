@@ -1,5 +1,6 @@
 {% load static %}
   <link rel="stylesheet" href="{% static 'layout/styles/base.css'%}" type="text/css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
   <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %} "/>
   {% load i18n %}
 <!DOCTYPE html>
@@ -23,10 +24,7 @@ for (i = 0; i < dropdowns.length; i++) {
 var openDropdown = dropdowns[i];
 if (openDropdown.classList.contains('button_show')) {
 openDropdown.classList.remove('button_show');
-}
-}
-}
-}
+}}}}
 </script>
   </head>
   <body>
@@ -62,8 +60,29 @@ openDropdown.classList.remove('button_show');
         {% endif %}
         <a href="{% url 'support' %}">{% trans 'About' %}</a>
         <a href="{% url 'submit' %}">{% trans 'Submit' %}</a>
+        <div class="mobile-menu">
+        <a href="#" class="bar-menu">
+          <i class="fas fa-bars"></i>
+        </a>
+        </div>
+      </div>
         <a href="{% url 'search' %}">Search </a>
       </nav>
+
+        <div class="mbl-menu">
+          <ul>
+            <li><a href=''>Home</a></li>
+            <li><a href=''>Submit</a></li>
+            {% if user.is_authenticated %}
+            Hello {{ user.username }}
+            <li><a href=''>Logout</a></li>
+            {% else %}
+            <li><a href=''>Signup</a></li>
+            <li><a href=''>Login</a></li>
+            {% endif %}
+          </ul>
+        </div
+
       <div class="content">
         {% block content %}
         {% endblock %}
@@ -72,5 +91,7 @@ openDropdown.classList.remove('button_show');
         {% trans 'elifinokuzu is  an open-source etymological dictionary. <a href="/support">Support</a> us on github.' %}
       </footer>
     </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+    <script src="{% static 'layout/styles/custom.js'%}"></script>
   </body>
 </html>
