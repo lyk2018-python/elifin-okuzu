@@ -9,8 +9,6 @@ from django.template import RequestContext
 from django.http import HttpResponse
 
 def home(request):
-
-
     user_list = Node.objects.all()
     user_list = user_list[::-1]
     page = request.GET.get('page', 1)
@@ -22,14 +20,6 @@ def home(request):
         users = paginator.page(1)
     except EmptyPage:
         users = paginator.page(paginator.num_pages)
-
-
-
-
-
-
-
-
 
     nodes = Node.objects.all()
 
@@ -124,3 +114,9 @@ def search(request):
 
     return render(request, 'search.html',{"form" : form})
 
+def language(request, language):
+    nodes = Node.objects.filter(language=language)
+    return render(request, 'language.html',{
+        "language": language,
+        "nodes": nodes,
+        })

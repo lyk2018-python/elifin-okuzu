@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %} Search Page {% endblock %}
+{% block content %}
+
+{{ language }}
+
+{% for node in nodes %}
+<div>{{ node }}</div>
+{% endfor %}
+{% endblock %}
