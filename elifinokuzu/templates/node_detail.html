@@ -20,7 +20,7 @@
     {% endfor %}
   {% endif %}
   {% if user.is_authenticated %}
-<hr><a href="{% url 'add_comment_to_node' node.id %}"><h1>Add comment</h1></a>
+    <hr><a href="{% url 'add_comment_to_node' node.id %}"><h1>Add comment</h1></a>
   {% endif %}
 {% for comment in node.comments_node.all %}
     <div>

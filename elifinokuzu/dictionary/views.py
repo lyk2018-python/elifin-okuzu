@@ -19,6 +19,7 @@ def home(request):
         'random_word': random_word,
     })
 
+
 def node_detail(request, id):
     node = Node.objects.get(id=id)
     incoming = node.incoming.all()
@@ -30,6 +31,7 @@ def node_detail(request, id):
         'title': 'Öküzün Elifi: %s' % node.name,
     })
 
+
 def edge_detail(request, id):
     edge = Edge.objects.get(id=id)
     return render(request, 'edge_detail.html', {
@@ -40,11 +42,14 @@ def edge_detail(request, id):
         'title': 'Öküzün Elifi: %s' % edge.type_of_edge,
     })
 
+
 def about(request):
     return render(request, 'about.html')
 
+
 def support(request):
     return render(request, 'support.html')
+
 
 def submit(request):
     form = SubmissionForm()
@@ -53,18 +58,36 @@ def submit(request):
         # import pdb
         # pdb.set_trace()
         form = SubmissionForm(request.POST)
-        #if form.cleaned_data['source_node'] in Node.objects.all()
         if form.is_valid():
 
-            source_node = Node.objects.get_or_create(name=form.cleaned_data['source_node'],language=form.cleaned_data['source_language'],user=request.user,)
-            if [i for i in Node.objects.all() if i.name == form.cleaned_data['source_node'] or i.name == form.cleaned_data['target_node']] != []:
-                return render(request, 'submit.html',
-                    {"error" : "there are already those nodes available, please try new one", 
-                    'form': SubmissionForm()}
-                    )
+            if [i for i in Node.objects.all() if i.name == form.cleaned_data['source_node']] == [] \
+                    or [i for i in Node.objects.all() if i.name == form.cleaned_data['target_node']] == []:
 
-            target_node = Node.objects.get_or_create(name=form.cleaned_data['target_node'],language=form.cleaned_data['target_language'],user=request.user,)
-            edge = Edge.objects.get_or_create(source=source_node,destination=target_node,is_directed=False,type_of_edge=form.cleaned_data['type_of_edge'],resource=form.cleaned_data['resource'],user=request.user,)
+                try:
+                    source_node = Node.objects.get(name=form.cleaned_data['source_node'])
+                except Node.DoesNotExist:
+                    source_node = Node.objects.create(name=form.cleaned_data['source_node'],
+                                                      language=form.cleaned_data['source_language'],
+                                                      user=request.user, )
+
+                try:
+                    target_node = Node.objects.get(name=form.cleaned_data['target_node'])
+                except Node.DoesNotExist:
+                    target_node = Node.objects.create(name=form.cleaned_data['target_node'],
+                                                      language=form.cleaned_data['target_language'],
+                                                      user=request.user, )
+
+                edge = Edge.objects.create(source=source_node, destination=target_node, is_directed=False,
+                                           type_of_edge=form.cleaned_data['type_of_edge'],
+                                           resource=form.cleaned_data['resource'], user=request.user, )
+
+            else:
+                return render(request, 'submit.html',
+                              {"error": "there are already those nodes available, please try new one",
+                               'form': SubmissionForm()}
+                              )
 
             return redirect(reverse("node_detail", args=[source_node.id]))
-    return render(request, 'submit.html',{"form" : form})
+
+
+    return render(request, 'submit.html', {"form": form})

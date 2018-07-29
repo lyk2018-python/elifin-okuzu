@@ -43,7 +43,23 @@ nav a:hover {
   background: #adf5de;
 }
 
+/* Dashboard */
 
+#profile_main {
+    width: 100%;
+   margin-bottom: 20px;
+   height: 15%;
+}
+
+#avatar {
+width: 20%;
+float: left;
+}
+
+#profile_info {
+width: 70%;
+float: left;
+}
 /* Dropdown starts*/
 
 #aboutbutton {cursor: pointer;}
