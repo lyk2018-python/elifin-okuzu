@@ -9,7 +9,6 @@ from django.template import RequestContext
 from django.http import HttpResponse
 
 def home(request):
-
     user_list = Node.objects.all()
     user_list = user_list[::-1]
     page = request.GET.get('page', 1)
@@ -110,7 +109,7 @@ def search(request):
 
     return render(request, 'search.html',{"form" : form})
 
-def language(request, language="tr"):
+def language(request, language):
     nodes = Node.objects.filter(language=language)
     # language = "Hello Stranger"
     # import pdb
