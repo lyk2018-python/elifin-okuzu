@@ -28,6 +28,12 @@ openDropdown.classList.remove('button_show');
 </script>
   </head>
   <body>
+    <div class="sidenav">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#clients">Clients</a>
+        <a href="#contact">Contact</a>
+      </div>
     <div class="container">
       <header>
         <a
@@ -82,7 +88,8 @@ openDropdown.classList.remove('button_show');
             {% endif %}
           </ul>
         </div>
-
+      
+      <hr>
       <div class="content">
         {% block content %}
         {% endblock %}

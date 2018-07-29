@@ -23,4 +23,5 @@ urlpatterns = [
     path('nodes/<int:id>/comment/', comment_views.add_comment_to_node, name='add_comment_to_node'),
     path('edges/<int:id>/comment/', comment_views.add_comment_to_edge, name='add_comment_to_edge'),
     path('search/', dictionary_views.search, name='search'),
+    path('language/', dictionary_views.language, name='language'),
 ]
