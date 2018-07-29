@@ -5,6 +5,53 @@
   {% load i18n %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %} Default Title{% endblock %}</title>
+</head>
+<body>
+  <div class="sidenav">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#clients">Clients</a>
+      <a href="#contact">Contact</a>
+    </div>
+  <div class="container">
+    <header>
+      <a
+        id="logo"
+        href="/"
+      >
+        <img src="{% static 'logo.png' %}" />
+      </a>
+    </header>
+    <nav>
+      <a href="{% url 'home' %}">{% trans 'Home' %}</a>
+            <div class="menu">
+        <a href="{% url 'home' %}">Home</a>
+
+        <a id="aboutbutton" onclick="myFunction()" class="dropbtn ">About</a>
+        <div id="cangoDropdown" class="dropdown-content">
+        <a href="{% url 'about'%}">Elifin Okuzu</a>
+        <a href="{% url 'about'%}#sozluk">Elif's Ox or The Surprises Book</a>
+        <a href="{% url 'about'%}#oyk">Mustafa Akgül Free Software<br />Summer Camp</a>
+        <a href="{% url 'about'%}#fsf">Free Software Philosophy</a>
+        <a href="{% url 'about'%}#akgul">Mustafa Akgül</a>
+        </div>
+
+      {% if user.is_authenticated %}
+        Hello {{ user.username }}
+        <a href="{% url 'logout'%}">{% trans 'Logout' %}</a>
+      {% else %}
+        <a href="{% url 'signup'%}">{% trans 'Signup' %}</a>
+        <a href="{% url 'login'%}">{% trans 'Login' %}</a>
+      {% endif %}
+      <a href="{% url 'support' %}">{% trans 'About' %}</a>
+      <a href="{% url 'submit' %}">{% trans 'Submit' %}</a>
+      <div class="mobile-menu">
+      <a href="#" class="bar-menu">
+        <i class="fas fa-bars"></i>
+      </a>
   <head>
     <meta charset="utf-8">
     <title>{% block title %} Default Title{% endblock %}</title>
@@ -36,70 +83,35 @@ openDropdown.classList.remove('button_show');
         <a href="{% url 'language' language='es' %}">SP</a>
         <a href="{% url 'language' language='ar' %}">AR</a>
       </div>
-    <div class="container">
-      <header>
-        <a
-          id="logo"
-          href="/"
-        >
-          <img src="{% static 'logo.png' %}" />
-        </a>
-      </header>
-      <nav>
-        <a href="{% url 'home' %}">{% trans 'Home' %}</a>
-               <div class="menu">
-          <a href="{% url 'home' %}">Home</a>
-
-         <a id="aboutbutton" onclick="myFunction()" class="dropbtn ">About</a>
-         <div id="cangoDropdown" class="dropdown-content">
-         <a href="{% url 'about'%}">Elifin Okuzu</a>
-         <a href="{% url 'about'%}#sozluk">Elif's Ox or The Surprises Book</a>
-         <a href="{% url 'about'%}#oyk">Mustafa Akgül Free Software<br />Summer Camp</a>
-         <a href="{% url 'about'%}#fsf">Free Software Philosophy</a>
-         <a href="{% url 'about'%}#akgul">Mustafa Akgül</a>
-         </div>
-
-        {% if user.is_authenticated %}
-          Hello {{ user.username }}
-          <a href="{% url 'logout'%}">{% trans 'Logout' %}</a>
-        {% else %}
-          <a href="{% url 'signup'%}">{% trans 'Signup' %}</a>
-          <a href="{% url 'login'%}">{% trans 'Login' %}</a>
-        {% endif %}
-        <a href="{% url 'support' %}">{% trans 'About' %}</a>
-        <a href="{% url 'submit' %}">{% trans 'Submit' %}</a>
-        <div class="mobile-menu">
-        <a href="#" class="bar-menu">
-          <i class="fas fa-bars"></i>
-        </a>
-        </div>
-      </div>
-        <a href="{% url 'search' %}">Search </a>
-      </nav>
-
-        <div class="mbl-menu">
-          <ul>
-            <li><a href=''>Home</a></li>
-            <li><a href=''>Submit</a></li>
-            {% if user.is_authenticated %}
-            Hello {{ user.username }}
-            <li><a href=''>Logout</a></li>
-            {% else %}
-            <li><a href=''>Signup</a></li>
-            <li><a href=''>Login</a></li>
-            {% endif %}
-          </ul>
-        </div>
-      
-      <hr>
-      <div class="content">
-        {% block content %}
-        {% endblock %}
-      </div>
-      <footer>
-        {% trans 'elifinokuzu is  an open-source etymological dictionary. <a href="/support">Support</a> us on github.' %}
-      </footer>
     </div>
+      <a href="{% url 'search' %}">Search </a>
+    </nav>
+
+      <div class="mbl-menu">
+        <ul>
+          <li><a href=''>Home</a></li>
+          <li><a href=''>Submit</a></li>
+          {% if user.is_authenticated %}
+          Hello {{ user.username }}
+          <li><a href=''>Logout</a></li>
+          {% else %}
+          <li><a href=''>Signup</a></li>
+          <li><a href=''>Login</a></li>
+          {% endif %}
+        </ul>
+      </div>
+      
+    <hr>
+    <div class="content">
+      {% block content %}
+      {% endblock %}
+    </div>
+    <footer>
+      {% trans 'elifinokuzu is  an open-source etymological dictionary. <a href="/support">Support</a> us on github.' %}
+    </footer>
+  </div>
+</body>
+</html>
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
     <script src="{% static 'layout/styles/custom.js'%}"></script>
   </body>
