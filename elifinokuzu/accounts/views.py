@@ -20,9 +20,5 @@ def signup(request):
 def dashboard(request):
     return render(request, 'accounts/dashboard.html')
 
-<<<<<<< HEAD
 def support(request):
     return render(request, 'support.html')
-=======
-
->>>>>>> 1115d5ca7b1d2089557455b4835ca013d9ed1152

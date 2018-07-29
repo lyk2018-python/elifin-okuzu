@@ -53,8 +53,6 @@ def submit(request):
     form = SubmissionForm()
 
     if request.method == "POST":
-        # import pdb
-        # pdb.set_trace()
         form = SubmissionForm(request.POST)
         if form.is_valid():
 
@@ -80,16 +78,9 @@ def submit(request):
                     )
 
             return redirect(reverse("node_detail", args=[source_node.id]))
-<<<<<<< HEAD
-    return render(request, 'submit.html',{"form" : form})
-=======
-    else:
-        return render(request, 'submit.html',{"form" : form})
->>>>>>> 1115d5ca7b1d2089557455b4835ca013d9ed1152
+    return render(request, 'submit.html', {"form" : form})
 
 def search(request):
-
-
     form = Search()
     if request.method == "POST":
         form = Search(request.POST)
@@ -103,15 +94,4 @@ def search(request):
                 'edges': edges,
             })
 
-
-                
-<<<<<<< HEAD
     return render(request, 'search.html',{"form" : form})
-=======
-    return render(request, 'search.html',{"form" : form})
-
-
-
-
-
->>>>>>> 1115d5ca7b1d2089557455b4835ca013d9ed1152

@@ -32,17 +32,11 @@ class SubmissionForm(forms.Form):
         max_length=255,
         label=_('Resource'),
     )
-<<<<<<< HEAD
-    captcha = ReCaptchaField()
-    
-=======
 
->>>>>>> 1115d5ca7b1d2089557455b4835ca013d9ed1152
+    captcha = ReCaptchaField()
+
+    
 class Search(forms.Form):
     search=forms.CharField(
         max_length=255,
         )
-<<<<<<< HEAD
-=======
-
->>>>>>> 1115d5ca7b1d2089557455b4835ca013d9ed1152
