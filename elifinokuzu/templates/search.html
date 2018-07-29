@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %} Search Page {% endblock %}
+{% block content %}
+
+{% if form %}  
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Search</button>
+  </form>
+{% endif %}
+
+{% if searched_word %}
+    {%for gt in searched_word %}
+       <h4>{{gt}}</h4>
+       {% for edge in edges %}
+        {% if gt == edge.source %}
+            <span>İncoming</span>
+        {% endif %}
+        {% if gt == edge.destination %}
+            <span>Outgoing</span>
+        {% endif %}
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+
+{% endblock %}
