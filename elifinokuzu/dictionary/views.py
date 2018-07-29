@@ -1,11 +1,36 @@
 import random
 from django.shortcuts import render, redirect
 from dictionary.models import Node, Edge
-from .forms import SubmissionForm
+from .forms import SubmissionForm,Search
 from django.urls import reverse
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.models import User
+from django.template import RequestContext
+from django.http import HttpResponse
 
 def home(request):
+
+
+    user_list = Node.objects.all()
+    user_list = user_list[::-1]
+    page = request.GET.get('page', 1)
+    paginator = Paginator(user_list, 5)
+
+    try:
+        users = paginator.page(page)
+    except PageNotAnInteger:
+        users = paginator.page(1)
+    except EmptyPage:
+        users = paginator.page(paginator.num_pages)
+
+
+
+
+
+
+
+
+
     nodes = Node.objects.all()
 
     if len(Node.objects.all()) > 0:
@@ -17,6 +42,7 @@ def home(request):
         'title': 'Öküzün Elifi',
         'nodes': nodes,
         'random_word': random_word,
+        'users': users,
     })
 
 
@@ -55,39 +81,46 @@ def submit(request):
     form = SubmissionForm()
 
     if request.method == "POST":
-        # import pdb
-        # pdb.set_trace()
         form = SubmissionForm(request.POST)
         if form.is_valid():
 
             if [i for i in Node.objects.all() if i.name == form.cleaned_data['source_node']] == [] \
-                    or [i for i in Node.objects.all() if i.name == form.cleaned_data['target_node']] == []:
-
+                or [i for i in Node.objects.all() if i.name == form.cleaned_data['target_node']] == []:
+                
                 try:
                     source_node = Node.objects.get(name=form.cleaned_data['source_node'])
                 except Node.DoesNotExist:
-                    source_node = Node.objects.create(name=form.cleaned_data['source_node'],
-                                                      language=form.cleaned_data['source_language'],
-                                                      user=request.user, )
+                    source_node = Node.objects.create(name=form.cleaned_data['source_node'],language=form.cleaned_data['source_language'],user=request.user,)
 
                 try:
                     target_node = Node.objects.get(name=form.cleaned_data['target_node'])
                 except Node.DoesNotExist:
-                    target_node = Node.objects.create(name=form.cleaned_data['target_node'],
-                                                      language=form.cleaned_data['target_language'],
-                                                      user=request.user, )
+                    target_node = Node.objects.create(name=form.cleaned_data['target_node'],language=form.cleaned_data['target_language'],user=request.user,)
 
-                edge = Edge.objects.create(source=source_node, destination=target_node, is_directed=False,
-                                           type_of_edge=form.cleaned_data['type_of_edge'],
-                                           resource=form.cleaned_data['resource'], user=request.user, )
-
+                edge = Edge.objects.create(source=source_node,destination=target_node,is_directed=False,type_of_edge=form.cleaned_data['type_of_edge'],resource=form.cleaned_data['resource'],user=request.user,)
+            
             else:
                 return render(request, 'submit.html',
-                              {"error": "there are already those nodes available, please try new one",
-                               'form': SubmissionForm()}
-                              )
+                    {"error" : "there are already those nodes available, please try new one", 
+                    'form': SubmissionForm()}
+                    )
 
             return redirect(reverse("node_detail", args=[source_node.id]))
+    return render(request, 'submit.html', {"form" : form})
 
+def search(request):
+    form = Search()
+    if request.method == "POST":
+        form = Search(request.POST)
+        if form.is_valid():
+            searched_word = form.cleaned_data['search']
+            nodes = Node.objects.filter(name__contains=searched_word)
+            edges = Edge.objects.all()
+            return render(request, 'search.html', {
+                'form':form,
+                "searched_word": nodes,
+                'edges': edges,
+            })
 
-    return render(request, 'submit.html', {"form": form})
+    return render(request, 'search.html',{"form" : form})
+

@@ -2,6 +2,35 @@ body {
   font-family: helvetica, sans-serif;
   font-size: 1em;
 }
+nav .mobile-menu{
+  display: none;
+  position: absolute;
+  right: 15em;
+  top:%50;
+  transform: translate(-%50);
+  left: auto;
+}
+nav .i{
+    display: inline-block;
+    font-style: normal;
+    text-rendering: auto;
+    position:relative;
+}
+@media(max-width: 600px) {
+  body {
+      background-color: lightblue;
+  }
+  nav .mobile-menu{
+    display: block;
+  }
+  nav a{
+    display: none !important
+  }
+  nav .bar-menu{
+    display: block !important
+  }
+}
+
 .info{
   display: block;
   padding: 10px;
@@ -16,7 +45,24 @@ body {
   width: 37em;
   margin: auto;
 }
-
+.mbl-menu{
+  position: fixed;
+  width: 200px;
+  right: 0;
+  top: 0;
+  background: #000;
+  color: #fff;
+  transform: translateX(100%);
+  transition:all .4s;
+}
+.mbl-menu.coming{
+  transform:translateX(0%);
+}
+@media mbl-menu(max-width: 600px) {
+  .mbl-menu{
+    display:block;
+  }
+}
 header {
   text-align: center;
 }
@@ -171,12 +217,37 @@ form ul li {
 form ul {
   padding: 0 10px;
 }
-
+.nodeclass{
+background-color: #5C7480;
+display: block;
+border: #66BDE6;
+color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+font-size: 41px;
+letter-spacing: 25px;
+}
 .helptext {
   color: darkgray;
   display: block;
 }
-
+.comment-btn{
+  background-color: #4CAF50;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0px !important;
+}
+.comment-btn h3{
+  font-size: 20px;
+  color: white;
+  padding: 1px 10px !important;
+}
+.comment-btn:hover{
+  background-color: #225925;
+}
 button {
   font-size: 1.2em;
   padding: 0.3em 0.8em;

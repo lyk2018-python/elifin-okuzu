@@ -32,4 +32,11 @@ class SubmissionForm(forms.Form):
         max_length=255,
         label=_('Resource'),
     )
+
     captcha = ReCaptchaField()
+
+    
+class Search(forms.Form):
+    search=forms.CharField(
+        max_length=255,
+        )

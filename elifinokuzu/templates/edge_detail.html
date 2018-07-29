@@ -11,7 +11,7 @@
 	<p>{{ edge.type_of_edge }}</p>
 	<p>{{ edge.destination }}</p>
   {% if user.is_authenticated %}
-<hr><a href="{% url 'add_comment_to_edge' edge.id %}"><h1>Add comment</h1></a>
+<hr><a class="comment-btn" href="{% url 'add_comment_to_edge' edge.id %}"><h3>Add comment</h3></a>
   {% endif %}
 {% for comment in edge.comments_edge.all %}
     <div>
