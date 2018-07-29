@@ -22,7 +22,7 @@ urlpatterns = [
     path('reportdone', report_views.reportdone, name ='reportdone'),
     path('nodes/<int:id>/comment/', comment_views.add_comment_to_node, name='add_comment_to_node'),
     path('edges/<int:id>/comment/', comment_views.add_comment_to_edge, name='add_comment_to_edge'),
-    path(r'^avatar/', include('avatar.urls')),
+    path('avatar/', include('avatar.urls')),
     path('search/', dictionary_views.search, name='search'),
     path('language/<str:language>/', dictionary_views.language, name='language'),
 ]

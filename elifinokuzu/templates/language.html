@@ -2,9 +2,11 @@
 {% block title %} Search Page {% endblock %}
 {% block content %}
 
-{{ language }}
+<h2>{{ language }}</h2>
 
 {% for node in nodes %}
-<div>{{ node }}</div>
+<div>
+<a href="{% url 'node_detail' id=node.id %}">{{ node }}</a>
+</div>
 {% endfor %}
 {% endblock %}
