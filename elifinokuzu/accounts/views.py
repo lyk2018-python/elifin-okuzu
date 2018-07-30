@@ -16,7 +16,10 @@ def signup(request):
             return redirect('home')
         else:
             form = CustomUserCreationForm()
-            return render(request, 'registration/signup.html', {'form': form})
+            return render(request, 'registration/signup.html', {'form': form})    
+    else:
+        form = CustomUserCreationForm()
+        return render(request, 'registration/signup.html', {'form': form})
 
 def dashboard(request):
     return render(request, 'accounts/dashboard.html')
