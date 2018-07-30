@@ -4,6 +4,6 @@ from captcha.fields import ReCaptchaField
 class ReportForm(ModelForm):
     class Meta:
         model = Issue
-        fields = ['url',"explantation"]
+        fields = ['title',"explantation"]
 
     captcha = ReCaptchaField()
