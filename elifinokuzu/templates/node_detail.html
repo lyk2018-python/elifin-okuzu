@@ -21,6 +21,9 @@
   {% endif %}
 {% for comment in comments %}
     <div>
+      {% if comment.user.id == request.user.id %}
+        <a href="{% url 'delete_own_comment' comment.id node.id %}">Delete</a>
+      {% endif %}
         <h4><strong>{{ comment.user.username }}:</strong></h4>
         <p>{{ comment.text }}</p>
         <h5>{{ comment.created_date|date:"d M, Y" }}</h5>
@@ -29,5 +32,4 @@
 {% empty %}
     <p>No comments here yet :(</p>
 {% endfor %}
-
 {% endblock %}
