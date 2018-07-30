@@ -1,5 +1,6 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
+from django.conf.urls import include, url
 from reports import views as report_views
 from dictionary import views as dictionary_views
 from accounts import views as account_views
@@ -25,4 +26,6 @@ urlpatterns = [
     path('avatar/', include('avatar.urls')),
     path('search/', dictionary_views.search, name='search'),
     path('language/<str:language>/', dictionary_views.language, name='language'),
+    #url(r'^delete/(?P<pk>[0-9]+)/$', comment_views.cat_deldelate_own_commentete, name='delate_own_comment')
+    path('delete/<int:id>/<int:node_id>', comment_views.delete_own_comment, name='delete_own_comment')
 ]
