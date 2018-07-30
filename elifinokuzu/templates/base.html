@@ -30,6 +30,7 @@
         <a href="{% url 'about' %}">{% trans 'About' %}</a>
         <a href="{% url 'search' %}">{% trans 'Search' %}</a>
         {% if user.is_authenticated %}
+          <a href="{% url 'report'%}">{% trans 'Report' %}</a>
           <a href="{% url 'logout'%}">{% trans 'Logout' %}</a>
         {% else %}
           <a href="{% url 'signup'%}">{% trans 'Signup' %}</a>
@@ -46,6 +47,7 @@
           <li><a href="{% url 'about' %}">{% trans 'About' %}</a></li>
           <li><a href="{% url 'search' %}">{% trans 'Search' %}</a></li>
           {% if user.is_authenticated %}
+            <a href="{% url 'report'%}">{% trans 'Report' %}</a>
             <a href="{% url 'logout'%}">{% trans 'Logout' %}</a>
           {% else %}
             <a href="{% url 'signup'%}">{% trans 'Signup' %}</a>
@@ -64,4 +66,3 @@
 
   </body>
 </html>
-
