@@ -37,8 +37,7 @@ class Node(models.Model):
         max_length=255,
         choices=LANGUAGE_CHOICES
     )
-    
-
+    model_id = models.IntegerField()
     def __str__(self):
         return self.name
 
@@ -72,7 +71,8 @@ class Edge(models.Model):
         max_length=255,
         choices=EDGE_TYPE_CHOICES
     )
-
+    model_id = models.IntegerField()
+    
     def __str__(self):
         if self.is_directed:
             arrow = '---[%s]-->' % self.type_of_edge

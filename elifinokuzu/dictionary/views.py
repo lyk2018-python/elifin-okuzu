@@ -1,6 +1,7 @@
 import random
 from django.shortcuts import render, redirect
 from dictionary.models import Node, Edge
+from comments.models import Comment
 from .forms import SubmissionForm,Search
 from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -40,22 +41,28 @@ def node_detail(request, id):
     node = Node.objects.get(id=id)
     incoming = node.incoming.all()
     outgoing = node.outgoing.all()
+    comments = Comment.objects.filter(model_id=node.model_id)
     return render(request, 'node_detail.html', {
         'node': node,
         'incoming': incoming,
         'outgoing': outgoing,
         'title': 'Öküzün Elifi: %s' % node.name,
+        "comments": comments,
     })
 
 
 def edge_detail(request, id):
     edge = Edge.objects.get(id=id)
+    comments = Comment.objects.filter(model_id=edge.model_id)
+    # import pdb
+    # pdb.set_trace()
     return render(request, 'edge_detail.html', {
         'edge': edge,
         'edge.source': edge.source,
         'edge.destination': edge.destination,
         'edge.type_of_edge': edge.type_of_edge,
         'title': 'Öküzün Elifi: %s' % edge.type_of_edge,
+        "comments": comments,
     })
 
 
@@ -73,21 +80,20 @@ def submit(request):
     if request.method == "POST":
         form = SubmissionForm(request.POST)
         if form.is_valid():
-
             if [i for i in Node.objects.all() if i.name == form.cleaned_data['source_node']] == [] \
                 or [i for i in Node.objects.all() if i.name == form.cleaned_data['target_node']] == []:
                 
                 try:
                     source_node = Node.objects.get(name=form.cleaned_data['source_node'])
                 except Node.DoesNotExist:
-                    source_node = Node.objects.create(name=form.cleaned_data['source_node'],language=form.cleaned_data['source_language'],user=request.user,)
+                    source_node = Node.objects.create(name=form.cleaned_data['source_node'],language=form.cleaned_data['source_language'],user=request.user, model_id=len(Node.objects.all()))
 
                 try:
                     target_node = Node.objects.get(name=form.cleaned_data['target_node'])
                 except Node.DoesNotExist:
-                    target_node = Node.objects.create(name=form.cleaned_data['target_node'],language=form.cleaned_data['target_language'],user=request.user,)
+                    target_node = Node.objects.create(name=form.cleaned_data['target_node'],language=form.cleaned_data['target_language'],user=request.user, model_id=len(Node.objects.all()))
 
-                edge = Edge.objects.create(source=source_node,destination=target_node,is_directed=False,type_of_edge=form.cleaned_data['type_of_edge'],resource=form.cleaned_data['resource'],user=request.user,)
+                edge = Edge.objects.create(source=source_node,destination=target_node,is_directed=False,type_of_edge=form.cleaned_data['type_of_edge'],resource=form.cleaned_data['resource'],user=request.user, model_id=len(Edge.objects.all()))
             
             else:
                 return render(request, 'submit.html',

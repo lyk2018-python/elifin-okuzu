@@ -19,9 +19,9 @@
   {% if user.is_authenticated %}
     <hr><a class="comment-btn" href="{% url 'add_comment_to_node' node.id %}"><h3>Add comment</h3></a>
   {% endif %}
-{% for comment in node.comments_node.all %}
+{% for comment in comments %}
     <div>
-        <h4><strong>{{ comment.user }}:</strong></h4>
+        <h4><strong>{{ comment.user.username }}:</strong></h4>
         <p>{{ comment.text }}</p>
         <h5>{{ comment.created_date|date:"d M, Y" }}</h5>
     </div>

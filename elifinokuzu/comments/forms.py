@@ -1,15 +1,15 @@
 from django import forms
-from .models import Comment_To_Node, Comment_To_Edge #Node, Edge
+from .models import Comment #Comment_To_Node, Comment_To_Edge #Node, Edge
 from captcha.fields import ReCaptchaField
 
-class CommentFormForNode(forms.ModelForm):
+class CommentForm(forms.ModelForm):
     captcha = ReCaptchaField()
     class Meta:
-        model = Comment_To_Node
+        model = Comment
         fields = ('text',)
 
-class CommentFormForEdge(forms.ModelForm):
-    captcha = ReCaptchaField()
-    class Meta:
-        model = Comment_To_Edge
-        fields = ('text',)
+# class CommentFormForEdge(forms.ModelForm):
+#     captcha = ReCaptchaField()
+#     class Meta:
+#         model = Comment_To_Edge
+#         fields = ('text',)
