@@ -2,3 +2,4 @@ Django==2.0.7
 django-recaptcha==1.4.0
 pkg-resources==0.0.0
 pytz==2018.5
+django-avatar
