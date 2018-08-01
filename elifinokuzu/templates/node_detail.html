@@ -21,9 +21,11 @@
   {% endif %}
 {% for comment in comments %}
     <div>
-      {% if comment.user.id == request.user.id %}
-        <a href="{% url 'delete_own_comment' comment.id node.id %}">Delete</a>
-      {% endif %}
+      <div style="float:right">
+        {% if comment.user.id == request.user.id %}
+          <a class="comment-btn" style="background-color:#ff0000" href="{% url 'delete_own_comment' comment.id node.id %}"><h3>Delete<h3></a>
+        {% endif %}
+      </div>
         <h4><strong>{{ comment.user.username }}:</strong></h4>
         <p>{{ comment.text }}</p>
         <h5>{{ comment.created_date|date:"d M, Y" }}</h5>
