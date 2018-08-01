@@ -4,20 +4,22 @@
     <h2>{% trans 'Welcome' %} {{ user.username }}</h2>
     {% if user.is_authenticated %}
             <div id="profile_info_and_avatar">
-                <div id="avatar" style="float:right">
+                <div id="avatar" style="float:right" align=right>
                 {% load avatar_tags %}
                 {% avatar user 100 %}
                 </div>
                 {% trans 'User ID:' %} {{ user.id }}
-                <br>
+                <br/>
                 {% trans 'Username:' %} {{ user.username }}
-                <br>
+                <br/>
                 {% trans 'Email Address:' %} {{ user.email }}
-                <br>
+                <br/>
                 {% trans 'Last Login:' %} {{ user.last_login }}
-                <br>
+                <br/>
                 {% trans 'Date Joined:' %} {{ user.date_joined }}
-                <br>
-             </div>     
+                <br/>
+                <br/>
+                <br/>
+             </div>
     {% endif %}
 {% endblock %}
