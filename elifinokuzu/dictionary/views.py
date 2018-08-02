@@ -1,4 +1,4 @@
-import random
+import random, json
 from django.shortcuts import render, redirect
 from dictionary.models import Node, Edge
 from comments.models import Comment
@@ -34,6 +34,7 @@ def home(request):
         'nodes': nodes,
         'random_word': random_word,
         'users': users,
+        #'full_list_json': full_list_json,
     })
 
 

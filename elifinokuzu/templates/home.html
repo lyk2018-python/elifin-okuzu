@@ -3,6 +3,23 @@
 {% block title %}{% trans 'Home Page' %}{% endblock %}
 {% block content %}
 {% for node in nodes %}
+<style>
+    .link {
+        stroke: #ccc;
+    }
+
+    .node text {
+        pointer-events: none;
+        font: 10px sans-serif;
+    }
+
+    @font-face {
+        font-family: 'overwatch';
+        src: url('fonts/koverwatch.woff2');
+    }
+</style>
+
+
   <div>
 	  <h1><a class="nodeclass" href="{% url 'node_detail' node.id %}">{{ node.name }}-{{ node.language }}</a></h1>
 	  <a href="{% url 'node_detail' node.id %}">Comments: {{ node.comments.count }}</a><br><hr>
@@ -49,4 +66,86 @@
     <br><br><br>
   </div>
 {% endif %}
+<a href="{% url 'jsondata' %}">{% url 'jsondata' %}</a>
+
+<script src='http://d3js.org/d3.v3.min.js'></script>
+<script>
+
+  /*var obj = JSON.parse(text);*/
+
+  var width = window.innerWidth,
+      height = window.innerHeight
+
+  var svg = d3.select("body").append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+  var force = d3.layout.force()
+      .gravity(0.1)
+      .distance(100)
+      .charge(-700)
+      .size([width, height]);
+
+  function getRandomColor() {
+          var letters = '0123456789ABCDEF';
+          var color = '#';
+          for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+          }
+          return color;
+        }
+  d3.json("{% url 'jsondata' %}", function (error, json) {
+      if (error) throw error;
+      //console.log(json.nodes[0])
+      force
+          .nodes(json.nodes)
+          .links(json.links)
+          .start();
+
+      var link = svg.selectAll(".link")
+          .data(json.links)
+          .enter().append("line")
+          .attr("class", "link");
+
+      var node = svg.selectAll(".node")
+          .data(json.nodes)
+          .enter().append("g")
+          .attr("class", "node")
+          .call(force.drag);
+
+      node.append('circle')
+          .attr('r', 13)
+          .attr('fill', function (d) {
+              return getRandomColor();
+          });
+
+      node.append("text")
+          .attr("dx", -18)
+          .attr("dy", 8)
+          .style("font-family", "overwatch")
+          .style("font-size", "18px") 
+
+          .text(function (d) {
+              return d.name
+          });
+
+      force.on("tick", function () {
+          link.attr("x1", function (d) {
+                  return d.source.x;
+              })
+              .attr("y1", function (d) {
+                  return d.source.y;
+              })
+              .attr("x2", function (d) {
+                  return d.target.x;
+              })
+              .attr("y2", function (d) {
+                  return d.target.y;
+              }); 
+          node.attr("transform", function (d) { 
+              return "translate(" + d.x + "," + d.y + ")";
+          });
+      }); 
+  });
+</script>
 {% endblock %}

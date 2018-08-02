@@ -1,9 +1,9 @@
-from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from dictionary.models import Node, Edge
 from .forms import CommentForm #CommentFormForNode, CommentFormForEdge
 from .models import Comment
+from django.http import HttpResponse
 
 def add_comment_to_node(request, id):
     node = get_object_or_404(Node.objects.filter(pk=id))
