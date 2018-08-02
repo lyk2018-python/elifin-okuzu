@@ -1,17 +1,40 @@
 # elifin-okuzu
-***************************************************************************************************************************
-*                                          Etymological dictionary software                                               *
-***************************************************************************************************************************
- INSTALLATION
+**********************************************************************************************************************
+*                                       Etymological dictionary software                                             *
+**********************************************************************************************************************
+INSTALLATION
  
- to install requirements for project go to base folder which has requirements.txt, open terminal and type
- ```
- pip install -r requirements.txt
- ```
+First of all install virtual environment for your PC 
+ (for Windows you need to download virtualenv: check http://pip.readthedocs.io/en/stable/installing/#do-i-need-to-install-pip)
+```
+apt-get install python3-pip
+pip3 install virtualenv
+```
+
+Create a folder for your virtual environment
+```
+mkdir env
+cd env
+virtualenv myenv
+```
+
+Activate your virtual environment
+```
+FOR LINUX:
+source myenv/bin/activate
+
+FOR WINDOWS:
+myvenv/Scripts/activate
+```
+
+To install requirements for project go to base folder which has requirements.txt in it, open terminal and type
+```
+pip install -r requirements.txt
+```
  
- After you done with installing requirements go to folder where setting.py is (\elifinokuzu\elifinokuzu) and create local_settings.py file it should include:
+After you done with installing requirements go to folder where setting.py is (\elifinokuzu\elifinokuzu) and create local_settings.py file it should include:
   
- ```
+```
 SECRET_KEY = 'INSERT YOUR SECRET_KEY HERE'
 ALLOWED_HOSTS = []
 DEBUG = True
@@ -26,10 +49,15 @@ DATABASES = {
 ```
 (You can create your own SECRET_KEY on https://www.miniwebtool.com/django-secret-key-generator/)
 
-Then on your base file (\elifinokuzu\) open termaninal and type the followings:
+On your base file (\elifinokuzu\) open terminal and type the followings:
 
 ```
  python manage.py makemigrations                  (to making migretions ready for database to pull)
  python manage.py migrate                         (to migrate ready migrations)
  python manage.py migrate --run-syncdb            (to create SQL tables if there is a problem)
+```
+
+Create a superuser with this line:
+```
+python manage.py createsuperuser
 ```
