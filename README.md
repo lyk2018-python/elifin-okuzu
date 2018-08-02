@@ -57,7 +57,12 @@ On your base file (\elifinokuzu\) open terminal and type the followings:
  python manage.py migrate --run-syncdb            (to create SQL tables if there is a problem)
 ```
 
-Create a superuser with this line:
+Create a super user
 ```
 python manage.py createsuperuser
+```
+
+run server
+```
+python manage.py runserver
 ```
