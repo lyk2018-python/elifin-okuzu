@@ -35,31 +35,36 @@
   {% endfor %}
 </tbody>
 </table>
+{% if random_word != "None" %}
+  <div>
+  <br><br>
+  <a class="comment-btn" href="{% url 'node_detail' random_word %}"><h3>{% trans 'GET A RANDOM WORD' %}</h3></a>
+  <br><br>
+  </div>
+{% else %}
+  <h2>{% trans 'Database is EMPTY' %}</h2>
+{% endif %}
 {% if users.has_other_pages %}
-  <ul class="pagination">
+    <div class="pagination" align=center>
     {% if users.has_previous %}
-      <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
+      <div><a href="?page={{ users.previous_page_number }}">&laquo;</a></div>
     {% else %}
-      <li class="disabled"><span>&laquo;</span></li>
+      <div class="comment-btn" class="disabled"><span><h3>&laquo;</h3></span></div>
     {% endif %}
     {% for i in users.paginator.page_range %}
       {% if users.number == i %}
-        <li class="active"><span>{{ i }}</span></li>
+        <div class="comment-btn" class="active"><span><h3>{{ i }}</h3></span></div>
       {% else %}
-        <li><a href="?page={{ i }}">{{ i }}</a></li>
+        <a class="comment-btn" href="?page={{ i }}"><h3>{{ i }}</h3></a>
       {% endif %}
     {% endfor %}
     {% if users.has_next %}
-      <li><a href="?page={{ users.next_page_number }}">&raquo;</a></li>
+      <a class="comment-btn" href="?page={{ users.next_page_number }}"><h3>&raquo;</h3></a>
     {% else %}
-      <li class="disabled"><span>&raquo;</span></li>
+      <div class="disabled"><span>&raquo;</span></div>
     {% endif %}
-  </ul>
-{% endif %}
-{% if random_word != "None" %}
-  <a href="{% url 'node_detail' random_word %}">{% trans 'GET A RANDOM WORD' %}</a><br>
-{% else %}
-  <h2>{% trans 'Database is EMPTY' %}</h2>
+    <br><br><br>
+  </div>
 {% endif %}
 <a href="{% url 'jsondata' %}">{% url 'jsondata' %}</a>
 

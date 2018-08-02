@@ -1,5 +1,4 @@
 body {
-  font-family: helvetica, sans-serif;
   font-size: 1em;
 }
 nav .mobile-menu{
@@ -148,7 +147,7 @@ display: inline-block;
 
 .content {
   padding: 1em 0;
-  color: #404040;
+  color: #000000;
 }
 
 /* Dropdown ends*/
@@ -196,7 +195,7 @@ label {
 
 input {
   font-size: 1.2em;
-  border: 3px solid yellow;
+  border: 3px solid #407363;
   outline: none;
   margin: 2px 0;
 }
@@ -267,7 +266,7 @@ h1 {
 h2 {
   font-size: 35px;
   line-height: 40px;
-  border-bottom: 3px solid yellow;
+  border-bottom: 3px solid #407363;
   font-weight: normal;
   text-align: center;
   padding: 0 0 10px;
@@ -292,5 +291,3 @@ h6 {
   font-size: 12px;
   line-height: 20px;
 }
-
-

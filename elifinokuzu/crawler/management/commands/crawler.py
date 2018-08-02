@@ -35,7 +35,7 @@ class Command(BaseCommand):
          self.word = str(origin)+" "+str(origin2)
 
     def new_node(self,node_name="null",node_lang="null"):
-        n = Node.objects.get_or_create(name=node_name,language=node_lang)[0]
+        n = Node.objects.get_or_create(name=node_name,language=node_lang, model_id=len(Node.objects.all()))[0]
         n.save()
 
     def new_edge(self,destination,source):
@@ -45,6 +45,7 @@ class Command(BaseCommand):
                     destination=Node.objects.get(name=destination),
                     type_of_edge= "derives_from",
                     is_directed = True,
+                    model_id=len(Node.objects.all())
                     )[0]
         e.save()
 

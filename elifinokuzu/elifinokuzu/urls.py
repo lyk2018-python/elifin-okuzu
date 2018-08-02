@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include, url
 from reports import views as report_views
+from support import views as support_views
 from dictionary import views as dictionary_views
 from accounts import views as account_views
 from comments import views as comment_views
@@ -10,7 +11,8 @@ from comments import views as comment_views
 urlpatterns = [
     path('', dictionary_views.home, name='home'),
     path('about/', dictionary_views.about, name='about'),
-    path('support/', dictionary_views.support, name='support'),
+    path('support/', support_views.support, name='support'),
+    path('supportdone', support_views.supportdone, name ='supportdone'),
     path('admin/', admin.site.urls),
     path('nodes/<int:id>/', dictionary_views.node_detail, name='node_detail'),
     path('accounts/', include('django.contrib.auth.urls')),
