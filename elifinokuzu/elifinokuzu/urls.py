@@ -28,6 +28,7 @@ urlpatterns = [
     path('avatar/', include('avatar.urls')),
     path('search/', dictionary_views.search, name='search'),
     path('language/<str:language>/', dictionary_views.language, name='language'),
-    #url(r'^delete/(?P<pk>[0-9]+)/$', comment_views.cat_deldelate_own_commentete, name='delate_own_comment')
-    path('delete/<int:id>/<int:node_id>', comment_views.delete_own_comment, name='delete_own_comment')
+    #url(r'^delete/(?P<pk>[0-9]+)/$', comment_views.cat_deldelate_own_commentete, name='delate_own_comment'),
+    path('delete/<int:id>/<int:node_id>', comment_views.delete_own_comment, name='delete_own_comment'),
+    path('json', report_views.jsondata, name='jsondata'),
 ]
