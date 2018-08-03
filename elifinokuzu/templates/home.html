@@ -2,7 +2,6 @@
 {% load i18n %}
 {% block title %}{% trans 'Home Page' %}{% endblock %}
 {% block content %}
-{% for node in nodes %}
 <style>
     .link {
         stroke: #ccc;
@@ -20,6 +19,7 @@
 </style>
 
 
+{% for node in users %}
   <div>
 	  <h1><a class="nodeclass" href="{% url 'node_detail' node.id %}">{{ node.name }}-{{ node.language }}</a></h1>
 	  <a href="{% url 'node_detail' node.id %}">Comments: {{ node.comments.count }}</a><br><hr>
@@ -66,14 +66,10 @@
     <br><br><br>
   </div>
 {% endif %}
-<a href="{% url 'jsondata' %}">{% url 'jsondata' %}</a>
 
 <script src='http://d3js.org/d3.v3.min.js'></script>
 <script>
-
-  /*var obj = JSON.parse(text);*/
-
-  var width = window.innerWidth,
+  var width = window.innerWidth - 100,
       height = window.innerHeight
 
   var svg = d3.select("body").append("svg")
@@ -83,7 +79,7 @@
   var force = d3.layout.force()
       .gravity(0.1)
       .distance(100)
-      .charge(-700)
+      .charge(-400)
       .size([width, height]);
 
   function getRandomColor() {
@@ -96,7 +92,6 @@
         }
   d3.json("{% url 'jsondata' %}", function (error, json) {
       if (error) throw error;
-      //console.log(json.nodes[0])
       force
           .nodes(json.nodes)
           .links(json.links)
@@ -114,14 +109,14 @@
           .call(force.drag);
 
       node.append('circle')
-          .attr('r', 13)
+          .attr('r', 16)
           .attr('fill', function (d) {
               return getRandomColor();
           });
 
       node.append("text")
           .attr("dx", -18)
-          .attr("dy", 8)
+          .attr("dy", 25)
           .style("font-family", "overwatch")
           .style("font-size", "18px") 
 
