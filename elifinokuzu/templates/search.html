@@ -2,7 +2,7 @@
 {% block title %} Search Page {% endblock %}
 {% block content %}
 
-{% if form %}  
+{% if form %}
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
@@ -12,15 +12,7 @@
 
 {% if searched_word %}
     {%for gt in searched_word %}
-       <h4>{{gt}}</h4>
-       {% for edge in edges %}
-        {% if gt == edge.source %}
-            <span>İncoming</span>
-        {% endif %}
-        {% if gt == edge.destination %}
-            <span>Outgoing</span>
-        {% endif %}
-        {% endfor %}
+       <a href="{% url 'node_detail' gt.id %}" ><h2>{{gt}}</h2></a>
     {% endfor %}
 {% endif %}
 
