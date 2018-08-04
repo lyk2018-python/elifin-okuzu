@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 {% block title %}Support{% endblock %}
 {% block content %}
-<h2>Submit Support</h2
-{% if user.is_anonymous %}
-    <div class="info warning">
-        <p>Please login for use support</p>
-        <p><h4>Support IBAN number : </h4></p>
-    </div>
-{% else %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" onclick="this.form.submit(); this.disabled=true; this.value='Sending…'">Submit</button>
-    </form>
+    <h2>Submit Support</h2>
     <p><h4>Support IBAN number : </h4></p>
-{% endif %}
+    {% if user.is_anonymous %}
+        <div class="info warning">
+            <p>Please login for use support</p>
+            <p><h4>Support IBAN number : </h4></p>
+        </div>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" onclick="this.form.submit(); this.disabled=true; this.value='Sending…'">Submit</button>
+        </form>
+    {% endif %}
 {% endblock %}

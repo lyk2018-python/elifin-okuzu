@@ -3,21 +3,23 @@
 
 {% block title %}{{ edge.type_of_edge }}{% endblock %}
 {% block content %}
-<form action="/report">
+    <br/>
+    <form action="/report">
       <input type="submit" class="report_button" value="Report" />
-  </form>
+    </form>
 	<h1>{{ edge.type_of_edge }}</h1>
-	<p>{{ edge.source }}</p>
-	<p>{{ edge.type_of_edge }}</p>
-	<p>{{ edge.destination }}</p>
-  {% if user.is_authenticated %}
-<hr><a class="comment-btn" href="{% url 'add_comment_to_edge' edge.id %}"><h3>Add comment</h3></a>
-  {% endif %}
-{% for comment in comments %}
+    <hr/>
+    <h5>Edge source:</h5><p>{{ edge.source }}</p>
+	<h5>Edge type:</h5><p>{{ edge.type_of_edge }}</p>
+	<h5>Edge destination:</h5><p>{{ edge.destination }}</p>
+    {% if user.is_authenticated %}
+        <hr><a class="button" href="{% url 'add_comment_to_edge' edge.id %}">Add comment</a>
+    {% endif %}
+    {% for comment in comments %}
     <div>
         <div style="float:right">
           {% if comment.user.id == request.user.id %}
-            <a class="comment-btn" style="background-color:#ff0000" href="{% url 'delete_own_comment' comment.id node.id %}"><h3>Delete<h3></a>
+            <a class="button" style="background-color:#ff0000" href="{% url 'delete_own_comment' comment.id node.id %}">Delete</a>
           {% endif %}
         </div>
         <h4><strong>{{ comment.user.username }}</strong></h4>

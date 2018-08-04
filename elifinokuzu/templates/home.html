@@ -2,71 +2,15 @@
 {% load i18n %}
 {% block title %}{% trans 'Home Page' %}{% endblock %}
 {% block content %}
-<style>
-    .link {
-        stroke: #ccc;
-    }
-
-    .node text {
-        pointer-events: none;
-        font: 10px sans-serif;
-    }
-
-    @font-face {
-        font-family: 'overwatch';
-        src: url('fonts/koverwatch.woff2');
-    }
-</style>
-
-
-{% for node in users %}
-  <div>
-	  <h1><a class="nodeclass" href="{% url 'node_detail' node.id %}">{{ node.name }}-{{ node.language }}</a></h1>
-	  <a href="{% url 'node_detail' node.id %}">Comments: {{ node.comments.count }}</a><br><hr>
-  </div>
-{% endfor %}
-<table class="table table-bordered" style="width:50%;">
-<tbody>
-  {% for user in users %}
-    <tr>
-      <td style="border:none;"><a href="{% url 'node_detail' user.id %}">{{ user.name }}</a></td>
-      <td style="border:none;">{{ user.language }}</td>
-    </tr>
-  {% endfor %}
-</tbody>
-</table>
 {% if random_word != "None" %}
   <div>
   <br><br>
-  <a class="comment-btn" href="{% url 'node_detail' random_word %}"><h3>{% trans 'GET A RANDOM WORD' %}</h3></a>
+  <a class="button" href="{% url 'node_detail' random_word %}">{% trans 'Get a random word' %}</a>
   <br><br>
   </div>
 {% else %}
   <h2>{% trans 'Database is EMPTY' %}</h2>
-{% endif %}
-{% if users.has_other_pages %}
-    <div class="pagination" align=center>
-    {% if users.has_previous %}
-      <div><a href="?page={{ users.previous_page_number }}">&laquo;</a></div>
-    {% else %}
-      <div class="comment-btn" class="disabled"><span><h3>&laquo;</h3></span></div>
-    {% endif %}
-    {% for i in users.paginator.page_range %}
-      {% if users.number == i %}
-        <div class="comment-btn" class="active"><span><h3>{{ i }}</h3></span></div>
-      {% else %}
-        <a class="comment-btn" href="?page={{ i }}"><h3>{{ i }}</h3></a>
-      {% endif %}
-    {% endfor %}
-    {% if users.has_next %}
-      <a class="comment-btn" href="?page={{ users.next_page_number }}"><h3>&raquo;</h3></a>
-    {% else %}
-      <div class="disabled"><span>&raquo;</span></div>
-    {% endif %}
-    <br><br><br>
-  </div>
-{% endif %}
-
+{% endif %
 <script src='http://d3js.org/d3.v3.min.js'></script>
 <script>
   var width = window.innerWidth - 100,
@@ -143,4 +87,43 @@
       }); 
   });
 </script>
+{% for node in nodes %}
+<div>
+	  <h1><a class="nodeclass" href="{% url 'node_detail' node.id %}">{{ node.name }}-{{ node.language }}</a></h1>
+	  <a href="{% url 'node_detail' node.id %}">Comments: {{ node.comments.count }}</a><br><hr>
+</div>
+{% endfor %}
+<table class="table table-bordered" style="width:50%;">
+  <tbody>
+    {% for user in users %}
+      <tr>
+        <td style="border:none;"><a href="{% url 'node_detail' user.id %}">{{ user.name }}</a></td>
+        <td style="border:none;">{{ user.language }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% if users.has_other_pages %}
+    <div class="pagination" align=center>
+    {% if users.has_previous %}
+      <div><a href="?page={{ users.previous_page_number }}">&laquo;</a></div>
+    {% else %}
+      <div class="button" class="disabled"><span><h3>&laquo;</h3></span></div>
+    {% endif %}
+    {% for i in users.paginator.page_range %}
+      {% if users.number == i %}
+        <div class="button" class="active"><span><h3>{{ i }}</h3></span></div>
+      {% else %}
+        <a class="button" href="?page={{ i }}"><h3>{{ i }}</h3></a>
+      {% endif %}
+    {% endfor %}
+    {% if users.has_next %}
+      <a class="button" href="?page={{ users.next_page_number }}"><h3>&raquo;</h3></a>
+    {% else %}
+      <div class="disabled"><span>&raquo;</span></div>
+    {% endif %}
+    <br><br><br>
+  </div>
+{% endif %}
+
 {% endblock %}
