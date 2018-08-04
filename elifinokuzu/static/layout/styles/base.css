@@ -1,171 +1,26 @@
+
+/* Heading sets */
+header{
+  font-family:"Lucida Console",Monospace;
+}
 body {
   font-size: 1em;
-}
-nav .mobile-menu{
-  display: none;
-  position: absolute;
-  right: 15em;
-  top:%50;
-  transform: translate(-%50);
-  left: auto;
-}
-nav .i{
-    display: inline-block;
-    font-style: normal;
-    text-rendering: auto;
-    position:relative;
-}
-@media(max-width: 600px) {
-  body {
-      background-color: lightblue;
-  }
-  nav .mobile-menu{
-    display: block;
-  }
-  nav a{
-    display: none !important
-  }
-  nav .bar-menu{
-    display: block !important
-  }
+  font-family:"Lucida Console",Monospace;
+
 }
 
-.info{
+/*node*/
+.nodeclass{
+  background-color: #5C7480;
   display: block;
-  padding: 10px;
-  letter-spacing: 1px;
-}
-.warning{
-  background-color: #fcf8e3;
-  border:1px solid #faebcc;
-  color: #333;
-}
-.container {
-  width: 45em;
-  margin: auto;
-}
-.mbl-menu{
-  position: fixed;
-  width: 200px;
-  right: 0;
-  top: 0;
-  background: #000;
-  color: #fff;
-  transform: translateX(100%);
-  transition:all .4s;
-}
-.mbl-menu.coming{
-  transform:translateX(0%);
-}
-@media mbl-menu(max-width: 600px) {
-  .mbl-menu{
-    display:block;
-  }
-}
-header {
+  border: #66BDE6;
+  color: white;
+  padding: 15px 32px;
   text-align: center;
-}
-
-#logo img {
-  width: 190px;
-}
-
-nav {
-  background: #e6fff7;
-  line-height: 46px;
-  height: 46px;
   text-decoration: none;
+  font-size: 41px;
 }
-
-nav a {
-  color: black;
-  text-decoration: none;
-  transition: all .4s;
-  height: inherit;
-}
-nav a:hover {
-
-  background: #adf5de;
-}
-
-/* Dashboard */
-
-#profile_main {
-    width: 100%;
-   margin-bottom: 20px;
-   height: 15%;
-}
-
-#avatar {
-width: 20%;
-float: left;
-}
-
-#profile_info {
-width: 70%;
-float: left;
-}
-/* Dropdown starts*/
-
-#aboutbutton {cursor: pointer;}
-
-.dropdown {
-position: relative;
-display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  overflow: auto;
-  width: 250px;
-  left: 50%;
-  top: 50%;
-  transform: translateX(-75%) translateY(5%);
-}
-
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  width: 100%;
-  text-align: center;
-  font-size: 14px;
-  border-bottom: 1px solid #888;
-}
-
-.dropdown-content a:last-child {
-
-  border: none;
-}
-
-.dropdown a:hover {background-color: #ddd;}
-
-.button_show {display: block;}
-
-.content {
-  padding: 1em 0;
-  color: #000000;
-}
-
-/* Dropdown ends*/
-
-.menu {
-  float: right;
-  position: relative;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 5px;
-}
-
-footer {
-  background: lightgray;
-  padding: 0.6em;
-}
+/*node end*/
 
 .content h3 {
   margin: 0;
@@ -173,85 +28,6 @@ footer {
   font-weight: normal;
   color: #464646;
 }
-
-/* Story — Relationship */
-.story-relationship {
-  border: 3px solid #f3f3f3;
-  border-left: 0;
-  border-right: 0;
-  border-bottom: 0;
-  padding: 1em;
-}
-
-.story-relationship a {
-  text-decoration: underline;
-  color: black;
-}
-
-/* Django */
-label {
-  display: block;
-}
-
-input {
-  font-size: 1.2em;
-  border: 3px solid #407363;
-  outline: none;
-  margin: 2px 0;
-}
-
-input:focus {
-  border: 3px solid black;
-}
-
-select {
-  font-size: 1.2em;
-  margin: 2px 0;
-}
-
-form ul li {
-  list-style: none;
-}
-
-form ul {
-  padding: 0 10px;
-}
-.nodeclass{
-background-color: #5C7480;
-display: block;
-border: #66BDE6;
-color: white;
-padding: 15px 32px;
-text-align: center;
-text-decoration: none;
-font-size: 41px;
-}
-.helptext {
-  color: darkgray;
-  display: block;
-}
-.comment-btn{
-  background-color: #4CAF50;
-  border: none;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  margin: 0px !important;
-}
-.comment-btn h3{
-  font-size: 20px;
-  color: white;
-  padding: 1px 10px !important;
-}
-.comment-btn:hover{
-  background-color: #225925;
-}
-button {
-  font-size: 1.2em;
-  padding: 0.3em 0.8em;
-}
-
-/* Heading sets */
 
 *, *:after, *:before {
   box-sizing: border-box;
@@ -289,4 +65,197 @@ h5 {
 h6 {
   font-size: 12px;
   line-height: 20px;
+}
+
+/*Heading sets End*/
+
+#logo img {
+  width: 60px;
+}
+
+#profile_main {
+  width: 100%;
+  margin-bottom: 20px;
+  height: 15%;
+}
+
+#avatar {
+  width: 20%;
+  float: left;
+}
+
+#profile_info {
+width: 70%;
+float: left;
+}
+
+/* Navbar */
+
+nav {
+  width: 45em;
+  background: #407363;
+  border-bottom: 3px solid transparent;
+  line-height: 46px;
+  height: 46px;
+  text-decoration: none;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  transition: all .4s;
+  height: inherit;
+  padding: 5px;
+  text-align: center;
+
+}
+nav a:hover {
+  border-bottom: 3px solid black;
+}
+
+/*nav .i{
+    display: inline-block;
+    font-style: normal;
+    text-rendering: auto;
+    position:relative;
+}  */
+
+.menu {
+  float: left;
+  position: relative;
+}
+
+/* Navbar Ends */
+
+.container {
+  width: 45em;
+  margin: auto;
+}
+
+footer{
+  width: 45em;
+  margin: auto;
+  padding: 0.6em;
+  background-color: #FFE4E1;
+  border:1px solid #EE82EE;
+  color: #333;
+}
+
+.info{
+  display: block;
+  padding: 10px;
+  letter-spacing: 1px;
+}
+
+.warning{
+  background-color: #fcf8e3;
+  border:1px solid #faebcc;
+  color: #333;
+}
+
+/* Button */
+
+.button {
+    background-color: #749094;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 24px;
+}
+
+.button:hover{
+  background-color: #637E87;
+}
+
+.report_button{
+  background-color: #949E86 ;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 24px;
+}
+
+.button:hover{
+  background-color: #828a77;
+}
+
+/* Button Ends */
+
+.helptext {
+  color: darkgray;
+  display: block;
+}
+
+label {
+  display: block;
+}
+
+input {
+  font-size: 1.2em;
+  border: 3px solid #407363;
+  outline: none;
+  margin: 2px 0;
+}
+
+input:focus {
+  border: 3px solid black;
+}
+
+select {
+  font-size: 1.2em;
+  margin: 2px 0;
+}
+
+form ul li {
+  list-style: none;
+}
+
+form ul {
+  padding: 0 10px;
+}
+
+/* Story — Relationship */
+.story-relationship {
+  border: 3px solid #f3f3f3;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  padding: 1em;
+}
+
+.story-relationship a {
+  text-decoration: none;
+  color: black;
+}
+
+/*home*/
+    .link {
+        stroke: #ccc;
+    }
+
+    .node text {
+        pointer-events: none;
+        font: 10px verdana;
+    }
+
+    @font-face {
+        font-family: 'overwatch';
+        src: url('fonts/koverwatch.woff2');
+    }
+/**/
+
+a{
+text-decoration: none;
 }

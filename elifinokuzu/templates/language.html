@@ -1,12 +1,10 @@
 {% extends "base.html" %}
 {% block title %} Search Page {% endblock %}
 {% block content %}
-
-<h2>{{ language }}</h2>
-
-{% for node in nodes %}
-<div>
-<a href="{% url 'node_detail' id=node.id %}">{{ node }}</a>
-</div>
-{% endfor %}
+    <h2>{{ language }}</h2>
+    {% for node in nodes %}
+    <div>
+        <a href="{% url 'node_detail' id=node.id %}">{{ node }}</a>
+    </div>
+    {% endfor %}
 {% endblock %}
