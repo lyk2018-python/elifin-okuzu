@@ -2,6 +2,7 @@
 {% load i18n %}
 {% block title %}{% trans 'Home Page' %}{% endblock %}
 {% block content %}
+
 {% if random_word != "None" %}
   <div>
   <br><br>
@@ -10,7 +11,7 @@
   </div>
 {% else %}
   <h2>{% trans 'Database is EMPTY' %}</h2>
-{% endif %
+{% endif %}
 <script src='http://d3js.org/d3.v3.min.js'></script>
 <script>
   var width = window.innerWidth - 100,
@@ -62,7 +63,7 @@
           .attr("dx", -18)
           .attr("dy", 25)
           .style("font-family", "overwatch")
-          .style("font-size", "18px") 
+          .style("font-size", "18px")
 
           .text(function (d) {
               return d.name
@@ -80,11 +81,11 @@
               })
               .attr("y2", function (d) {
                   return d.target.y;
-              }); 
-          node.attr("transform", function (d) { 
+              });
+          node.attr("transform", function (d) {
               return "translate(" + d.x + "," + d.y + ")";
           });
-      }); 
+      });
   });
 </script>
 {% for node in nodes %}
