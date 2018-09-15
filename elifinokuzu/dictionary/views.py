@@ -127,3 +127,15 @@ def language(request, language):
         "language": language,
         "nodes": nodes,
         })
+
+def delete_own_created(request, own_id):
+    try:
+        own_id = Node.objects.get(id=own_id)
+    except:
+        own_id = Edge.objects.get(id=own_id)
+        own_id.source.delete()
+        own_id.destination.delete()
+
+    own_id.delete()
+    
+    return redirect("/")

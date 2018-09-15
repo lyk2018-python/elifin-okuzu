@@ -3,7 +3,7 @@ from django.urls import reverse
 from dictionary.models import Node, Edge
 from .forms import CommentForm #CommentFormForNode, CommentFormForEdge
 from .models import Comment
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 def add_comment_to_node(request, id):
     node = get_object_or_404(Node.objects.filter(pk=id))
@@ -39,8 +39,4 @@ def add_comment_to_edge(request, id):
 def delete_own_comment(request, id, node_id):
     comment = Comment.objects.get(id=id)
     comment.delete()
-
-    if Node.objects.get(model_id=comment.model_id):
-        return redirect(reverse("node_detail", args=[node_id]))
-    elif Edge.objects.get(model_id=comment.model_id):
-        return redirect(reverse("node_detail", args=[node_id]))
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

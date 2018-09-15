@@ -5,14 +5,15 @@ from django.utils.translation import ugettext_lazy as _
 
 LANGUAGE_CHOICES = (
     ('tr', _('Turkish')),
-    ('fr', _('French')),
-    ('gr', _('German')),
-    ('pl', _('Polish')),
-    ('kr', _('Kurdish')),
-    ('lt', _('Latin')),
-    ('en', _('English')),
-    ('es', _('Spanish')),
     ('ar', _('Arabic')),
+    ('gr', _('Greek')),
+    ('fr', _('French')),
+    ('en', _('English')),
+    ('de', _('German')),
+    ('pl', _('Polish')),
+    ('kur', _('Kurdish')),
+    ('es', _('Spanish')),
+    #('lt', _('Latin')),
 )
 
 EDGE_TYPE_CHOICES = (
