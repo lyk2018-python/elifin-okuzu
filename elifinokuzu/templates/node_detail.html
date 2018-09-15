@@ -4,6 +4,10 @@
 {% block title %}{{ node.name }}{% endblock %}
 {% block content %}
   <h1>{{ node.name }}</h1>
+  {% if node.user.id == request.user.id %}
+    <a onclick="confirmDeletion(event)" class="button" style="background-color:#ff0000" href="{% url 'delete_own_created' node.id %}">Delete_Own</a>
+  {% endif %}
+
   {% if incoming %}
     <h1>Incoming</h1>
     {% for edge in incoming %}
@@ -23,7 +27,7 @@
     <div>
       <div style="float:right">
         {% if comment.user.id == request.user.id %}
-          <a class="button" style="background-color:#ff0000" href="{% url 'delete_own_comment' comment.id node.id %}">Delete</a>
+          <a onclick="confirmDeletion(event)" class="button" style="background-color:#ff0000" href="{% url 'delete_own_comment' comment.id node.id %}">Delete</a>
         {% endif %}
       </div>
         <h4><strong>{{ comment.user.username }}:</strong></h4>
@@ -34,4 +38,16 @@
 {% empty %}
     <p>No comments here yet :(</p>
 {% endfor %}
+<script type="text/javascript">
+document.getElementById("delete_sure").addEventListener("click", confirmDeletion);
+
+function confirmDeletion(event) {
+  if (confirm('Are you sure you your node? This will destroy it forever')) {
+
+  } else {
+    event.preventDefault()
+  }
+}
+</script>
 {% endblock %}
+

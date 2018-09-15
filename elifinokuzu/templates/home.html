@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans 'Home Page' %}{% endblock %}
+{% block content %}
+
+{% if random_word != "None" %}
+  <div>
+  <br><br>
+  <a class="button" href="{% url 'node_detail' random_word %}">{% trans 'Get a random word' %}</a>
+  <br><br>
+  </div>
+{% else %}
+  <h2>{% trans 'Database is EMPTY' %}</h2>
+{% endif %}
+<script src='http://d3js.org/d3.v3.min.js'></script>
+<script>
+  var width = window.innerWidth - 100,
+      height = window.innerHeight
+
+  var svg = d3.select("body").append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+  var force = d3.layout.force()
+      .gravity(0.1)
+      .distance(100)
+      .charge(-400)
+      .size([width, height]);
+
+  function getRandomColor() {
+          var letters = '0123456789ABCDEF';
+          var color = '#';
+          for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+          }
+          return color;
+        }
+  d3.json("{% url 'jsondata' %}", function (error, json) {
+      if (error) throw error;
+      force
+          .nodes(json.nodes)
+          .links(json.links)
+          .start();
+
+      var link = svg.selectAll(".link")
+          .data(json.links)
+          .enter().append("line")
+          .attr("class", "link");
+
+      var node = svg.selectAll(".node")
+          .data(json.nodes)
+          .enter().append("g")
+          .attr("class", "node")
+          .call(force.drag);
+
+      node.append('circle')
+          .attr('r', 16)
+          .attr('fill', function (d) {
+              return getRandomColor();
+          });
+
+      node.append("text")
+          .attr("dx", -18)
+          .attr("dy", 25)
+          .style("font-family", "overwatch")
+          .style("font-size", "18px")
+
+          .text(function (d) {
+              return d.name
+          });
+
+      force.on("tick", function () {
+          link.attr("x1", function (d) {
+                  return d.source.x;
+              })
+              .attr("y1", function (d) {
+                  return d.source.y;
+              })
+              .attr("x2", function (d) {
+                  return d.target.x;
+              })
+              .attr("y2", function (d) {
+                  return d.target.y;
+              });
+          node.attr("transform", function (d) {
+              return "translate(" + d.x + "," + d.y + ")";
+          });
+      });
+  });
+</script>
+{% for node in nodes %}
+<div>
+	  <h1><a class="nodeclass" href="{% url 'node_detail' node.id %}">{{ node.name }}-{{ node.language }}</a></h1>
+	  <a href="{% url 'node_detail' node.id %}">Comments: {{ node.comments.count }}</a><br><hr>
+</div>
+{% endfor %}
+<table class="table table-bordered" style="width:50%;">
+  <tbody>
+    {% for user in users %}
+      <tr>
+        <td style="border:none;"><a href="{% url 'node_detail' user.id %}">{{ user.name }}</a></td>
+        <td style="border:none;">{{ user.language }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% if users.has_other_pages %}
+    <div class="pagination" align=center>
+    {% if users.has_previous %}
+      <div><a href="?page={{ users.previous_page_number }}">&laquo;</a></div>
+    {% else %}
+      <div class="button" class="disabled"><span><h3>&laquo;</h3></span></div>
+    {% endif %}
+    {% for i in users.paginator.page_range %}
+      {% if users.number == i %}
+        <div class="button" class="active"><span><h3>{{ i }}</h3></span></div>
+      {% else %}
+        <a class="button" href="?page={{ i }}"><h3>{{ i }}</h3></a>
+      {% endif %}
+    {% endfor %}
+    {% if users.has_next %}
+      <a class="button" href="?page={{ users.next_page_number }}"><h3>&raquo;</h3></a>
+    {% else %}
+      <div class="disabled"><span>&raquo;</span></div>
+    {% endif %}
+    <br><br><br>
+  </div>
+{% endif %}
+
+{% endblock %}
