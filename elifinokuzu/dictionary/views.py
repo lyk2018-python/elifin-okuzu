@@ -2,12 +2,28 @@ import random, json
 from django.shortcuts import render, redirect
 from dictionary.models import Node, Edge
 from comments.models import Comment
-from .forms import SubmissionForm,Search
+from .forms import SubmissionForm, Search
 from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.models import User
 from django.template import RequestContext
 from django.http import HttpResponse
+
+def search(request):
+    form = Search()
+    if request.method == "POST":
+        form = Search(request.POST)
+        if form.is_valid():
+            searched_word = form.cleaned_data['search']
+            nodes = Node.objects.filter(name__contains=searched_word)
+            edges = Edge.objects.all()
+            return render(request, 'search.html', {
+                'form': form,
+                "searched_word": nodes,
+                'edges': edges,
+            })
+
+    return render(request, 'search.html',{"form" : form})
 
 def home(request):
     user_list = Node.objects.all()
@@ -29,7 +45,20 @@ def home(request):
     else:
         random_word = "None"
 
+    if request.method == "POST":    #Search bar
+        form = Search(request.POST)
+        if form.is_valid():
+            searched_word = form.cleaned_data['search']
+            nodes = Node.objects.filter(name__contains=searched_word)
+            edges = Edge.objects.all()
+            return render(request, 'search.html', {
+                'form': form,
+                "searched_word": nodes,
+                'edges': edges,
+            })
+
     return render(request, 'home.html', {
+        'search': Search(),
         'title': 'Öküzün Elifi',
         'nodes': nodes,
         'random_word': random_word,
@@ -105,21 +134,6 @@ def submit(request):
             return redirect(reverse("node_detail", args=[source_node.id]))
     return render(request, 'submit.html', {"form" : form})
 
-def search(request):
-    form = Search()
-    if request.method == "POST":
-        form = Search(request.POST)
-        if form.is_valid():
-            searched_word = form.cleaned_data['search']
-            nodes = Node.objects.filter(name__contains=searched_word)
-            edges = Edge.objects.all()
-            return render(request, 'search.html', {
-                'form':form,
-                "searched_word": nodes,
-                'edges': edges,
-            })
-
-    return render(request, 'search.html',{"form" : form})
 
 def language(request, language):
     nodes = Node.objects.filter(language=language)

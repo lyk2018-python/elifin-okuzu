@@ -92,7 +92,7 @@ float: left;
 /* Navbar */
 
 nav {
-  width: 45em;
+  width: 100%;
   background: #407363;
   border-bottom: 3px solid transparent;
   line-height: 46px;
