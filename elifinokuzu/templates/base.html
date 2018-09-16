@@ -10,7 +10,6 @@
   <title>{% block title %} Default Title {% endblock %}</title>
 </head>
 <body>
-   <div class="container">
     <nav>
       <!--<a
         id="logo"
@@ -20,6 +19,13 @@
       </a>-->
       {% if user.is_authenticated %}
         <a href="{% url 'dashboard' %}" style="float:right">{{ user.username }}</a>
+      {% endif %}
+      {% if search %}
+        <form method="post" style="float: right">
+          {% csrf_token %}
+          {{ search }}
+          <button class="button">Search</button>
+        </form>
       {% endif %}
       <div class="menu">
         <a href="{% url 'home' %}">{% trans ' Home' %}</a>
@@ -35,9 +41,7 @@
         {% endif %}
       </div>
     </nav>
-
-    <header>
-    </header>
+   <div class="container">
     <div class="content">
       {% block content %}
       {% endblock %}
