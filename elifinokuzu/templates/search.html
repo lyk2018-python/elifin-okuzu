@@ -2,18 +2,11 @@
 {% block title %} Search Page {% endblock %}
 {% block content %}
 
-{% if form %}
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="button">Search</button>
-  </form>
-{% endif %}
-
 {% if searched_word %}
     {%for gt in searched_word %}
        <a href="{% url 'node_detail' gt.id %}" ><h2>{{gt}}</h2></a>
     {% endfor %}
+{% else %}
+	<h2>Not such word found :(</h2>
 {% endif %}
-
 {% endblock %}
