@@ -10,6 +10,10 @@
   <title>{% block title %} Default Title {% endblock %}</title>
 </head>
 <body>
+      <button class="searchbutton" type="submit">
+        <i class="fa fa-search"></i>
+      </button>
+      <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
     <nav>
       <!--<a
         id="logo"
@@ -20,18 +24,12 @@
       {% if user.is_authenticated %}
         <a href="{% url 'dashboard' %}" style="float:right">{{ user.username }}</a>
       {% endif %}
-      {% if search %}
-        <form method="post" style="float: right">
-          {% csrf_token %}
-          {{ search }}
-          <button class="button">Search</button>
-        </form>
-      {% endif %}
+     
       <div class="menu">
         <a href="{% url 'home' %}">{% trans ' Home' %}</a>
         <a href="{% url 'submit' %}">{% trans ' Submit ' %}</a>
         <a href="{% url 'about' %}">{% trans ' About ' %}</a>
-        <a href="{% url 'search' %}">{% trans ' Search ' %}</a>
+        <a href="{% url 'search' '4' %}">{% trans ' Search ' %}</a>
         {% if user.is_authenticated %}
           <a href="{% url 'report'%}">{% trans ' Report ' %}</a>
           <a href="{% url 'logout'%}">{% trans ' Logout ' %}</a>
@@ -53,3 +51,17 @@
     </footer>
   </body>
 </html>
+
+<script type="text/javascript">
+  document.getElementsByClassName("searchbutton")[0].addEventListener("click", search_it);
+
+  function search_it() {
+    let input = document.getElementsByClassName("searchfield")[0].value;
+    if (input == "") {
+
+    } else {
+      currentLocation = window.location.href.split("/");
+      window.location = currentLocation[0] + "//" + currentLocation[2] + "/search/" + input;
+    }
+  }
+</script>

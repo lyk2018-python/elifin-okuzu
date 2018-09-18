@@ -9,22 +9,15 @@ from django.contrib.auth.models import User
 from django.template import RequestContext
 from django.http import HttpResponse
 
-def search(request):
-    form = Search()
-    if request.method == "POST":
-        form = Search(request.POST)
-        if form.is_valid():
-            searched_word = form.cleaned_data['search']
-            nodes = Node.objects.filter(name__contains=searched_word)
-            edges = Edge.objects.all()
-            return render(request, 'search.html', {
-                'form': form,
+def search(request, word):
+    nodes = Node.objects.filter(name__contains=word)
+    edges = Edge.objects.all()
+    return render(request, 'search.html', {
+                'form': word,
                 "searched_word": nodes,
                 'edges': edges,
             })
-
-    return render(request, 'search.html',{"form" : form})
-
+    
 def home(request):
     user_list = Node.objects.all()
     user_list = user_list[::-1]
@@ -44,18 +37,6 @@ def home(request):
         random_word = random.choice(Node.objects.all()).id
     else:
         random_word = "None"
-
-    if request.method == "POST":    #Search bar
-        form = Search(request.POST)
-        if form.is_valid():
-            searched_word = form.cleaned_data['search']
-            nodes = Node.objects.filter(name__contains=searched_word)
-            edges = Edge.objects.all()
-            return render(request, 'search.html', {
-                'form': form,
-                "searched_word": nodes,
-                'edges': edges,
-            })
 
     return render(request, 'home.html', {
         'search': Search(),
@@ -84,8 +65,6 @@ def node_detail(request, id):
 def edge_detail(request, id):
     edge = Edge.objects.get(id=id)
     comments = Comment.objects.filter(model_id=edge.model_id)
-    # import pdb
-    # pdb.set_trace()
     return render(request, 'edge_detail.html', {
         'edge': edge,
         'edge.source': edge.source,
@@ -151,5 +130,4 @@ def delete_own_created(request, own_id):
         own_id.destination.delete()
 
     own_id.delete()
-    
     return redirect("/")

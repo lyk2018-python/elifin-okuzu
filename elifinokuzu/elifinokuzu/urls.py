@@ -26,9 +26,9 @@ urlpatterns = [
     path('nodes/<int:id>/comment/', comment_views.add_comment_to_node, name='add_comment_to_node'),
     path('edges/<int:id>/comment/', comment_views.add_comment_to_edge, name='add_comment_to_edge'),
     path('avatar/', include('avatar.urls')),
-    path('search/', dictionary_views.search, name='search'),
+    path('search/<str:word>/', dictionary_views.search, name='search'),
+    # yeni url yaz searc + aranan kelime olsun url uzerinden arasin, JavaScript ile calissin hic backendi bulastirma
     path('language/<str:language>/', dictionary_views.language, name='language'),
-    #url(r'^delete/(?P<pk>[0-9]+)/$', comment_views.cat_deldelate_own_commentete, name='delate_own_comment'),
     path('delete/<int:id>/<int:node_id>', comment_views.delete_own_comment, name='delete_own_comment'),
     path('json', report_views.jsondata, name='jsondata'),
     path('delete/<int:own_id>', dictionary_views.delete_own_created, name="delete_own_created")
