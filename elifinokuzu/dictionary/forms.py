@@ -36,7 +36,3 @@ class SubmissionForm(forms.Form):
     captcha = ReCaptchaField()
 
     
-class Search(forms.Form):
-    search=forms.CharField(
-        max_length=255,
-        )

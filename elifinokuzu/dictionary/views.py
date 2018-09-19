@@ -2,7 +2,7 @@ import random, json
 from django.shortcuts import render, redirect
 from dictionary.models import Node, Edge
 from comments.models import Comment
-from .forms import SubmissionForm, Search
+from .forms import SubmissionForm
 from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.models import User
@@ -10,14 +10,14 @@ from django.template import RequestContext
 from django.http import HttpResponse
 
 def search(request, word):
-    nodes = Node.objects.filter(name__contains=word)
+    nodes = Node.objects.filter(name__startswith=word) #name__contains
     edges = Edge.objects.all()
     return render(request, 'search.html', {
                 'form': word,
                 "searched_word": nodes,
-                'edges': edges,
+                'edges': edges, #does not work
             })
-    
+
 def home(request):
     user_list = Node.objects.all()
     user_list = user_list[::-1]
@@ -39,7 +39,6 @@ def home(request):
         random_word = "None"
 
     return render(request, 'home.html', {
-        'search': Search(),
         'title': 'Öküzün Elifi',
         'nodes': nodes,
         'random_word': random_word,
