@@ -4,6 +4,7 @@ header{
   font-family:"Lucida Console",Monospace;
 }
 body {
+  margin: 0;
   font-size: 1em;
   font-family:"Lucida Console",Monospace;
 
@@ -213,6 +214,7 @@ input:focus {
   border: 3px solid black;
 }
 
+
 select {
   font-size: 1.2em;
   margin: 2px 0;
@@ -238,6 +240,24 @@ form ul {
 .story-relationship a {
   text-decoration: none;
   color: black;
+}
+
+.right-bar {
+  float: right;
+}
+.search-container {
+  margin: 2px 50px 0 0 ;
+}
+.authenticated-bar {
+  padding: 0 20px 15px 0;
+}
+.searchbutton {
+  font-size: 1.2em;
+  border: 3px solid #fff;
+  margin: 2px 0;
+}
+.searchbutton:hover {
+  border: 3px solid black;
 }
 
 /*home*/

@@ -10,10 +10,7 @@
   <title>{% block title %} Default Title {% endblock %}</title>
 </head>
 <body>
-      <button class="searchbutton" type="submit">
-        <i class="fa fa-search"></i>
-      </button>
-      <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
+
     <nav>
       <!--<a
         id="logo"
@@ -22,14 +19,19 @@
         <img src="{% static 'logo.png' %}" />
       </a>-->
       {% if user.is_authenticated %}
-        <a href="{% url 'dashboard' %}" style="float:right">{{ user.username }}</a>
+        <a class="right-bar authenticated-bar" href="{% url 'dashboard' %}">{{ user.username.title }}</a>
       {% endif %}
+      <div class=" right-bar search-container">
+        <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
+        <button class="searchbutton" type="submit">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
      
       <div class="menu">
         <a href="{% url 'home' %}">{% trans ' Home' %}</a>
         <a href="{% url 'submit' %}">{% trans ' Submit ' %}</a>
         <a href="{% url 'about' %}">{% trans ' About ' %}</a>
-        <a href="{% url 'search' '4' %}">{% trans ' Search ' %}</a>
         {% if user.is_authenticated %}
           <a href="{% url 'report'%}">{% trans ' Report ' %}</a>
           <a href="{% url 'logout'%}">{% trans ' Logout ' %}</a>
