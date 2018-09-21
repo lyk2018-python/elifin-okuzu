@@ -17,7 +17,7 @@ urlpatterns = [
     path('nodes/<int:id>/', dictionary_views.node_detail, name='node_detail'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/', account_views.signup, name='signup'),
-    path('accounts/profile/', account_views.dashboard, name='dashboard'),
+    path('accounts/profile/<int:id>', account_views.dashboard, name='dashboard'),
     path('support/', account_views.support, name='support'),
     path('submit/', dictionary_views.submit, name='submit'),
     path('edges/<int:id>/', dictionary_views.edge_detail, name='edge_detail'),

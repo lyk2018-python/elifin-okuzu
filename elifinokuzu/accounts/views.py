@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm
@@ -21,8 +22,10 @@ def signup(request):
         form = CustomUserCreationForm()
         return render(request, 'registration/signup.html', {'form': form})
 
-def dashboard(request):
-    return render(request, 'accounts/dashboard.html')
+def dashboard(request, id):
+    user = User.objects.get(id=id)
+    #import pdb; pdb.set_trace()
+    return render(request, 'accounts/dashboard.html', {"user": user})
 
 def support(request):
     return render(request, 'support.html')
