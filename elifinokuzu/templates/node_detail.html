@@ -24,20 +24,23 @@
     <hr><a class="button" href="{% url 'add_comment_to_node' node.id %}">Add comment</a>
   {% endif %}
 {% for comment in comments %}
-    <div>
-      <div style="float:right">
-        {% if comment.user.id == request.user.id %}
-          <a onclick="confirmDeletion(event)" class="button" style="background-color:#ff0000" href="{% url 'delete_own_comment' comment.id node.id %}">Delete</a>
-        {% endif %}
-      </div>
-        <h4><strong>{{ comment.user.username }}:</strong></h4>
+    <div class="comment-area">
+        <div style="float:right">
+          {% if comment.user.id == request.user.id %}
+            <a onclick="confirmDeletion(event)" class="button" style="background-color:#ff0000" href="{% url 'delete_own_comment' comment.id node.id %}">Delete</a>
+          {% endif %}
+        </div>
         <p>{{ comment.text }}</p>
-        <h5>{{ comment.created_date|date:"d M, Y" }}</h5>
+        <div class="comment-date">
+          <h5>{{ comment.created_date|date:"d M, Y" }}</h5>
+        </div>
+        <div class="comment-user">
+          <h4><strong><a href="{% url 'dashboard' comment.user.id %}">{{ comment.user.username.title }}</a></strong></h4>
+        </div>
     </div>
-<hr>
-{% empty %}
-    <p>No comments here yet :(</p>
-{% endfor %}
+        {% empty %}
+            <p>No comments here yet :(</p>
+        {% endfor %}
 <script type="text/javascript">
 document.getElementById("delete_sure").addEventListener("click", confirmDeletion);
 

@@ -7,31 +7,47 @@
     <form action="/report">
       <input type="submit" class="report_button" value="Report" />
     </form>
-	<h1>{{ edge.type_of_edge }}</h1>
+  <h1>{{ edge.type_of_edge }}</h1>
     {% if edge.user.id == request.user.id %}
         <a onclick="confirmDeletion(event)" class="button" style="background-color:#ff0000" href="{% url 'delete_own_created' edge.id %}">Delete_Own</a>
     {% endif %}<hr/>
-    <h5>Edge source:</h5><p>{{ edge.source }}</p>
-	<h5>Edge type:</h5><p>{{ edge.type_of_edge }}</p>
-	<h5>Edge destination:</h5><p>{{ edge.destination }}</p>
+    <table class="table-fill">
+      <tbody class="table-hover">
+        <tr>
+          <td class="text-left">Edge Source</td>
+          <td class="text-left"><a href="{% url 'node_detail' edge.source.id %}">{{ edge.source }}</a></td>
+        </tr>
+        <tr>
+          <td class="text-left">Type of Edge</td>
+          <td class="text-left">{{ edge.type_of_edge.title }}</td>
+        </tr>
+        <tr>
+          <td class="text-left">Edge Destination</td>
+          <td class="text-left"><a href="{% url 'node_detail' edge.destination.id %}">{{ edge.destination }}</a></td>
+        </tr>
+      </tbody>
+    </table>
     {% if user.is_authenticated %}
         <hr><a class="button" href="{% url 'add_comment_to_edge' edge.id %}">Add comment</a>
     {% endif %}
     {% for comment in comments %}
-    <div>
+    <div class="comment-area">
         <div style="float:right">
           {% if comment.user.id == request.user.id %}
             <a onclick="confirmDeletion(event)" class="button" style="background-color:#ff0000" href="{% url 'delete_own_comment' comment.id edge.id %}">Delete</a>
           {% endif %}
         </div>
-        <h4><strong>{{ comment.user.username }}</strong></h4>
         <p>{{ comment.text }}</p>
-        <h5>{{ comment.created_date|date:"d M, Y" }}</h5>
+        <div class="comment-date">
+          <h5>{{ comment.created_date|date:"d M, Y" }}</h5>
+        </div>
+        <div class="comment-user">
+          <h4><strong><a href="{% url 'dashboard' comment.user.id %}">{{ comment.user.username.title }}</a></strong></h4>
+        </div>
     </div>
-<hr>
-{% empty %}
-    <p>No comments here yet :(</p>
-{% endfor %}
+        {% empty %}
+            <p>No comments here yet :(</p>
+        {% endfor %}
 <script type="text/javascript">
 document.getElementById("delete_sure").addEventListener("click", confirmDeletion);
 

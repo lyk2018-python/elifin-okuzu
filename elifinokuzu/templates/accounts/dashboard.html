@@ -8,7 +8,7 @@
                 {% load avatar_tags %}
                 {% avatar user 100 %}
                 </div>
-                <b>{% trans 'User ID:' %}</b> {{ user.id }}
+                <b hidden>{% trans 'User ID:' %} {{ user.id }}</b>
                 <br/>
                 <b>{% trans 'Username:' %}</b> {{ user.username }}
                 <br/>
