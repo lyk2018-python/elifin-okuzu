@@ -44,21 +44,32 @@
       {% block content %}
       {% endblock %}
     </div>
-
    </div>
 <footer>
       {% trans 'Elifin Öküzü is  an open-source etymological dictionary. <a href="/support">Support</a> us on github.' %}
-    </footer>
-  </body>
+</footer>
+</body>
 </html>
 
 <script type="text/javascript">
   document.getElementsByClassName("searchbutton")[0].addEventListener("click", search_it);
+  document.getElementsByClassName("searchfield")[0].addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        let input = document.getElementsByClassName("searchfield")[0].value;
+        if (input == "") {
+          return
+        } else {
+          currentLocation = window.location.href.split("/");
+          window.location = currentLocation[0] + "//" + currentLocation[2] + "/search/" + input;
+        }
+    }
+});
 
   function search_it() {
     let input = document.getElementsByClassName("searchfield")[0].value;
     if (input == "") {
-
+      return
     } else {
       currentLocation = window.location.href.split("/");
       window.location = currentLocation[0] + "//" + currentLocation[2] + "/search/" + input;

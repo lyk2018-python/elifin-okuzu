@@ -53,7 +53,7 @@ document.getElementById("delete_sure").addEventListener("click", confirmDeletion
 
 function confirmDeletion(event) {
   if (confirm('Are you sure you your Edge? This will destroy both Nodes and Edge')) {
-
+    return
   } else {
     event.preventDefault()
   }
