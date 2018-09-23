@@ -37,7 +37,6 @@ def home(request):
         random_word = random.choice(Node.objects.all()).id
     else:
         random_word = "None"
-
     return render(request, 'home.html', {
         'title': 'Öküzün Elifi',
         'nodes': nodes,

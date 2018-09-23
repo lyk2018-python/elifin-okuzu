@@ -115,13 +115,6 @@ nav a:hover {
   border-bottom: 3px solid black;
 }
 
-/*nav .i{
-    display: inline-block;
-    font-style: normal;
-    text-rendering: auto;
-    position:relative;
-}  */
-
 .menu {
   float: left;
   position: relative;
@@ -341,7 +334,7 @@ tr:last-child td:last-child {
  
 td {
   background:#FFFFFF;
-  padding:20px; /*120px;*/
+  padding:20px;
   width: 500px;
   text-align:left;
   vertical-align:middle;
@@ -379,7 +372,7 @@ td.text-right {
   text-align: right;
 }
 
- /* Comments */
+/* Comments */
 .comment-area {
   border: 1px solid #C1C3D1;
   width: 90%;
@@ -400,3 +393,4 @@ td.text-right {
     position:relative;
     float: left;
 }
+/* Comments end */

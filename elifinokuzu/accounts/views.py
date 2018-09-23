@@ -24,7 +24,6 @@ def signup(request):
 
 def dashboard(request, id):
     user = User.objects.get(id=id)
-    #import pdb; pdb.set_trace()
     return render(request, 'accounts/dashboard.html', {"user": user})
 
 def support(request):
