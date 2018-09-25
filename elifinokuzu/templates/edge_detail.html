@@ -4,12 +4,12 @@
 {% block title %}{{ edge.type_of_edge }}{% endblock %}
 {% block content %}
     <br/>
-    <form action="/report">
-      <input type="submit" class="report_button" value="Report" />
-    </form>
   <h1>{{ edge.type_of_edge }}</h1>
     {% if edge.user.id == request.user.id %}
         <a onclick="confirmDeletion(event)" class="button" style="background-color:#ff0000" href="{% url 'delete_own_created' edge.id %}">Delete_Own</a>
+    {% endif %}
+    {% if user.is_authenticated %}
+    <a class="button" style="background-color:#ff0000" href="{% url 'report' edge.id %}">Report this Edge</a>
     {% endif %}<hr/>
     <table class="table-fill">
       <tbody class="table-hover">

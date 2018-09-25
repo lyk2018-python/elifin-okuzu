@@ -12,8 +12,6 @@ class CustomUserCreationForm(UserCreationForm):
         fields = ("username","email")
 
     def save(self, commit=True):
-        # import pdb
-        # pdb.set_trace()
         user = super(CustomUserCreationForm, self).save(commit=False)
         user.email= self.cleaned_data["email"]
         if commit:

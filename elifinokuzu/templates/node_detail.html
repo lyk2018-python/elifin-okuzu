@@ -7,7 +7,9 @@
   {% if node.user.id == request.user.id %}
     <a onclick="confirmDeletion(event)" class="button" style="background-color:#ff0000" href="{% url 'delete_own_created' node.id %}">Delete_Own</a>
   {% endif %}
-
+  {% if user.is_authenticated %}
+    <a class="button" style="background-color:#ff0000" href="{% url 'report' node.id %}">Report this Edge</a>
+    {% endif %}
   {% if incoming %}
     <h1>Incoming</h1>
     {% for edge in incoming %}
@@ -51,6 +53,7 @@ function confirmDeletion(event) {
     event.preventDefault()
   }
 }
+document.getElementById("id_title").value = "{{ element }}"
 </script>
 {% endblock %}
 
