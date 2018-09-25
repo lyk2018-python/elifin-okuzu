@@ -34,7 +34,12 @@ def jsondata(request):
 
     return HttpResponse(json.dumps(liste, ensure_ascii=False).encode('utf8'))
 
-def report(request):
+def report(request, id):
+    try:
+        reported_elem = Node.objects.get(id=id)
+    except:
+        reported_elem = Edge.objects.get(id=id)
+
     if request.method == "POST":
         form = ReportForm(request.POST)
         if form.is_valid():
@@ -43,4 +48,4 @@ def report(request):
             return redirect(reverse("reportdone"))
     else:
         form = ReportForm()
-    return render(request, 'reports/report.html', {'form': form})
+    return render(request, 'reports/report.html', {'form': form, "element": reported_elem})

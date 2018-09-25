@@ -12,15 +12,15 @@ def signup(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             email=form.cleaned_data.get('email')
-            user = authenticate(username=username,password=raw_password,email=email)
+            user = authenticate(username=username, password=raw_password, email=email)
             login(request, user)
             return redirect('home')
         else:
             form = CustomUserCreationForm()
             return render(request, 'registration/signup.html', {'form': form})
-    else:
-        form = CustomUserCreationForm()
-        return render(request, 'registration/signup.html', {'form': form})
+
+    form = CustomUserCreationForm()
+    return render(request, 'registration/signup.html', {'form': form})
 
 def dashboard(request, id):
     user = User.objects.get(id=id)

@@ -27,15 +27,15 @@
         </button>
       </div>
       <div class="menu">
-        <a href="{% url 'home' %}">{% trans ' Home' %}</a>
-        <a href="{% url 'submit' %}">{% trans ' Submit ' %}</a>
-        <a href="{% url 'about' %}">{% trans ' About ' %}</a>
+        <a href="{% url 'home' %}">{% trans 'Home' %}</a>
+        <a href="{% url 'submit' %}">{% trans 'Submit' %}</a>
+        <a href="{% url 'about' %}">{% trans 'About' %}</a>
         {% if user.is_authenticated %}
-          <a href="{% url 'report'%}">{% trans ' Report ' %}</a>
-          <a href="{% url 'logout'%}">{% trans ' Logout ' %}</a>
+          
+          <a href="{% url 'logout'%}">{% trans 'Logout' %}</a>
         {% else %}
-          <a href="{% url 'signup'%}">{% trans ' Signup ' %}</a>
-          <a href="{% url 'login'%}">{% trans ' Login ' %}</a>
+          <a href="{% url 'signup'%}">{% trans 'Signup' %}</a>
+          <a href="{% url 'login'%}">{% trans 'Login' %}</a>
         {% endif %}
       </div>
     </nav>
