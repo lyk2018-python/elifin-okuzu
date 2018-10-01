@@ -1,4 +1,5 @@
 import random, json
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from dictionary.models import Node, Edge
 from comments.models import Comment
@@ -9,13 +10,20 @@ from django.contrib.auth.models import User
 from django.template import RequestContext
 from django.http import HttpResponse
 
+
 def search(request, word):
-    nodes = Node.objects.filter(name__startswith=word) #name__contains
-    edges = Edge.objects.all()
+    nodes = Node.objects.filter(name__contains=word) #name__contains
+    users = User.objects.filter(username__contains=word)
+    # Cant match edges for some reason [edges = Edge.objects.filter(source=Node.objects.filter(name__contains=word))]
+    try:
+        edges = Edge.objects.filter(source=Node.objects.get(name=word))
+    except:
+        edges = None
     return render(request, 'search.html', {
                 'form': word,
-                "searched_word": nodes,
-                'edges': edges, #does not work
+                "found_nodes": nodes,
+                "found_users": users,
+                "found_edges": edges,
             })
 
 def home(request):
@@ -72,14 +80,12 @@ def edge_detail(request, id):
         "comments": comments,
     })
 
-
 def about(request):
     return render(request, 'about.html')
 
 
 def support(request):
     return render(request, 'support.html')
-
 
 def submit(request):
     form = SubmissionForm()

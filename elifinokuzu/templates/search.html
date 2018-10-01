@@ -2,11 +2,30 @@
 {% block title %} Search Page {% endblock %}
 {% block content %}
 
-{% if searched_word %}
-    {%for gt in searched_word %}
-       <a href="{% url 'node_detail' gt.id %}" ><h2>{{gt}}</h2></a>
+{% if found_nodes %}
+    <h1>Found Nodes</h1>
+    {%for node in found_nodes %}
+       <a href="{% url 'node_detail' node.id %}" ><h2>{{node}}</h2></a>
     {% endfor %}
 {% else %}
-	<h2>Not such word found :(</h2>
+	<h2>Not such node found :(</h2>
+{% endif %}
+
+{% if found_users %}
+    <h1>Found Users</h1>
+    {%for user in found_users %}
+       <a href="{% url 'dashboard' user.id %}" ><h2>{{user}}</h2></a>
+    {% endfor %}
+{% else %}
+	<h2>Not such user found :(</h2>
+{% endif %}
+
+{% if found_edges %}
+    <h1>Found Edges</h1>
+    {%for edge in found_edges %}
+       <a href="{% url 'edge_detail' edge.id %}" ><h2>{{edge}}</h2></a>
+    {% endfor %}
+{% else %}
+	<h2>Not such edge found :(</h2>
 {% endif %}
 {% endblock %}

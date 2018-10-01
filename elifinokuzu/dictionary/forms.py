@@ -3,6 +3,7 @@ from .models import LANGUAGE_CHOICES, EDGE_TYPE_CHOICES
 from django.utils.translation import ugettext_lazy as _
 from captcha.fields import ReCaptchaField
 
+
 class SubmissionForm(forms.Form):
     source_language = forms.ChoiceField(
         choices=LANGUAGE_CHOICES,
