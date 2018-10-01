@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Comment #Comment_To_Node, Comment_To_Edge
+from .models import Comment
 
 
 admin.site.register(Comment)

@@ -5,6 +5,7 @@ from .forms import CommentForm #CommentFormForNode, CommentFormForEdge
 from .models import Comment
 from django.http import HttpResponse, HttpResponseRedirect
 
+
 def add_comment_to_node(request, id):
     node = get_object_or_404(Node.objects.filter(pk=id))
     if request.method == "POST":
@@ -34,7 +35,6 @@ def add_comment_to_edge(request, id):
     else:
         form = CommentForm()
     return render(request, 'comments/add_comment_to_edge.html', {'form': form})
-
 
 def delete_own_comment(request, id, node_id):
     comment = Comment.objects.get(id=id)

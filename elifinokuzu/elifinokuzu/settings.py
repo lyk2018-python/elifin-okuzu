@@ -121,6 +121,7 @@ STATICFILES_DIRS= [
     STATIC_DIR,
 ]
 LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
 
 try:
     from elifinokuzu.local_settings import *
