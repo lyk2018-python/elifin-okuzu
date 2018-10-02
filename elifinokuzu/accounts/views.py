@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-from .forms import CustomUserCreationForm, UserLoginForm
+from .forms import CustomUserCreationForm
 
 def signup(request):
     if request.method == 'POST':
@@ -15,6 +15,7 @@ def signup(request):
             user = authenticate(username=username, password=raw_password, email=email)
             login(request, user)
             return redirect('home')
+            
         else:
             form = CustomUserCreationForm()
             return render(request, 'registration/signup.html', {'form': form})
