@@ -17,7 +17,8 @@
       >
         <img src="{% static 'logo.png' %}" />
       </a>-->
-      {% if user.is_authenticated %}
+
+      {% if request.user.id != None %}
         <a class="right-bar authenticated-bar" href="{% url 'dashboard' request.user.id %}">{{ request.user.username.title }}</a>
       {% endif %}
       <div class=" right-bar search-container">
@@ -30,7 +31,7 @@
         <a href="{% url 'home' %}">{% trans 'Home' %}</a>
         <a href="{% url 'submit' %}">{% trans 'Submit' %}</a>
         <a href="{% url 'about' %}">{% trans 'About' %}</a>
-        {% if user.is_authenticated %}
+        {% if request.user.id != None %}
           <a href="{% url 'logout'%}">{% trans 'Logout' %}</a>
         {% else %}
           <a href="{% url 'signup'%}">{% trans 'Signup' %}</a>
