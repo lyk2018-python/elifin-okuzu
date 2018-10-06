@@ -29,11 +29,12 @@ def add_comment_to_edge(request, id):
             comment = form.save(commit=False)
             comment.edge = edge
             comment.user = request.user
-            comment.model_id = Edge.objects.get(source=Node.objects.get(name=edge.source.name)).model_id
+            comment.model_id = edge.model_id
             comment.save()
             return redirect('edge_detail', edge.id)
     else:
         form = CommentForm()
+        
     return render(request, 'comments/add_comment_to_edge.html', {'form': form})
 
 def delete_own_comment(request, id, node_id):
