@@ -20,4 +20,4 @@ six==1.11.0
 sql==0.4.0
 sqlparse==0.2.4
 text-unidecode==1.2
-urllib3==1.23
+urllib3==1.24.2
