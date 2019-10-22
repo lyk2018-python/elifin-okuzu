@@ -15,7 +15,7 @@ lxml==4.2.3
 Pillow==6.2.0
 python-dateutil==2.7.3
 pytz==2018.5
-requests==2.19.1
+requests==2.20.0
 six==1.11.0
 sql==0.4.0
 sqlparse==0.2.4
