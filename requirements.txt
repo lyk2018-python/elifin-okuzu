@@ -11,7 +11,7 @@ django-debug-toolbar==1.9.1
 django-recaptcha==1.4.0
 Faker==0.8.17
 idna==2.7
-lxml==4.2.3
+lxml==4.6.3
 Pillow==6.2.0
 python-dateutil==2.7.3
 pytz==2018.5
